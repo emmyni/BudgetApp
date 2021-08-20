@@ -16,27 +16,41 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Budget Planner" />
+            android:text="Grocery" />
         <EditText
-            android:layout_width="match_parent"
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Grocery" />
+            android:ems="10"
+            android:inputType="numberDecimal" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="House" />
         <EditText
-            android:layout_width="match_parent"
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="House" />
-        <EditText
-            android:layout_width="match_parent"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Transportation" />
+            android:text="Transportation" />
         <EditText
             android:id="@+id/editText3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="numberDecimal" />
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit" />
     </LinearLayout>
-
 
 
 
