@@ -9,7 +9,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    ArrayList<Contact> contacts;
+    ArrayList<Plan> plans;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,15 +17,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Lookup the recyclerview in activity layout
-        RecyclerView rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
+        RecyclerView rvPlans = (RecyclerView) findViewById(R.id.rvPlans);
 
-        // Initialize contacts
-        contacts = Contact.createContactsList(20);
+        // Initialize plans
+        plans = Plan.createPlansList(5);
         // Create adapter passing in the sample user data
-        ContactsAdapter adapter = new ContactsAdapter(contacts);
+        PlanAdapter adapter = new PlanAdapter(plans);
         // Attach the adapter to the recyclerview to populate items
-        rvContacts.setAdapter(adapter);
+        rvPlans.setAdapter(adapter);
         // Set layout manager to position the items
-        rvContacts.setLayoutManager(new LinearLayoutManager(this));
+        rvPlans.setLayoutManager(new LinearLayoutManager(this));
     }
 }

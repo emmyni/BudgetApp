@@ -7,56 +7,53 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class ContactsAdapter extends
-        RecyclerView.Adapter<ContactsAdapter.ViewHolder> {
+public class PlanAdapter extends
+        RecyclerView.Adapter<PlanAdapter.ViewHolder> {
 
-    private static final String TAG = "ContactsAdapter";
+    // Store a member variable for the plans
+    private List<Plan> mPlans;
 
-    // Store a member variable for the contacts
-    private List<Contact> mContacts;
-
-    // Pass in the contact array into the constructor
-    public ContactsAdapter(List<Contact> contacts) {
-        mContacts = contacts;
+    // Pass in the plans array into the constructor
+    public PlanAdapter(List<Plan> plans) {
+        mPlans = plans;
     }
 
     // Usually involves inflating a layout from XML and returning the holder
     @Override
-    public ContactsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PlanAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.item_contact, parent, false);
+        View planView = inflater.inflate(R.layout.item_plan, parent, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(contactView);
+        ViewHolder viewHolder = new ViewHolder(planView);
         return viewHolder;
     }
 
     // Involves populating data into the item through holder
     @Override
-    public void onBindViewHolder(ContactsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(PlanAdapter.ViewHolder holder, int position) {
         // Get the data model based on position
-        Contact contact = mContacts.get(position);
+        Plan plan = mPlans.get(position);
 
         // Set item views based on your views and data model
         TextView textView = holder.nameTextView;
-        textView.setText(contact.getName());
+        textView.setText(plan.getName());
         Button button = holder.messageButton;
-        button.setText(contact.isOnline() ? "Message" : "Offline");
-        button.setEnabled(contact.isOnline());
+        button.setText(plan.isOnline() ? "Message" : "Offline");
+        button.setEnabled(plan.isOnline());
     }
 
     // Returns the total count of items in the list
     @Override
     public int getItemCount() {
-        return mContacts.size();
+        return mPlans.size();
     }
 
     // Provide a direct reference to each of the views within a data item
@@ -74,7 +71,7 @@ public class ContactsAdapter extends
             // to access the context from any ViewHolder instance.
             super(itemView);
 
-            nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
+            nameTextView = (TextView) itemView.findViewById(R.id.plan_name);
             messageButton = (Button) itemView.findViewById(R.id.message_button);
         }
     }
