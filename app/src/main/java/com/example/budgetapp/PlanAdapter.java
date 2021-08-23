@@ -1,6 +1,7 @@
 package com.example.budgetapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,13 @@ import java.util.List;
 public class PlanAdapter extends
         RecyclerView.Adapter<PlanAdapter.ViewHolder> {
 
+    private Context mContext;
     // Store a member variable for the plans
     private List<Plan> mPlans;
 
     // Pass in the plans array into the constructor
-    public PlanAdapter(List<Plan> plans) {
+    public PlanAdapter(Context context, List<Plan> plans) {
+        mContext = context;
         mPlans = plans;
     }
 
@@ -46,8 +49,19 @@ public class PlanAdapter extends
         TextView textView = holder.nameTextView;
         textView.setText(plan.getName());
         Button button = holder.messageButton;
-        button.setText(plan.isOnline() ? "Message" : "Offline");
-        button.setEnabled(plan.isOnline());
+        button.setText("Edit");
+        button.setEnabled(true);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println("Button Clicked");
+
+                Intent activity2Intent = new Intent(mContext, Housing.class);
+                mContext.startActivity(activity2Intent);
+            }
+
+        });
+
     }
 
     // Returns the total count of items in the list

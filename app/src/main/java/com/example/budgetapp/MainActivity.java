@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         // Initialize plans
         plans = Plan.createPlansList(5);
         // Create adapter passing in the sample user data
-        PlanAdapter adapter = new PlanAdapter(plans);
+        PlanAdapter adapter = new PlanAdapter(this, plans);
         // Attach the adapter to the recyclerview to populate items
         rvPlans.setAdapter(adapter);
         // Set layout manager to position the items
