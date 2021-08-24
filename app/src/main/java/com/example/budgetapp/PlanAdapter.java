@@ -56,7 +56,7 @@ public class PlanAdapter extends
             public void onClick(View v) {
                 System.out.println("Button Clicked");
 
-                Intent activity2Intent = new Intent(mContext, Housing.class);
+                Intent activity2Intent = new Intent(mContext, PlanEntry.class);
                 mContext.startActivity(activity2Intent);
             }
 
