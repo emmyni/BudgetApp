@@ -20,7 +20,7 @@ public class PlanAdapter extends
     private List<Plan> mPlans;
 
     private Class[] mClasses = {
-            Grocery.class,
+            Food.class,
             House.class,
             Transportation.class,
             Entertainment.class,

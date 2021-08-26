@@ -15,7 +15,7 @@
         <activity android:name=".House" />
         <activity android:name=".calendar" />
         <activity android:name=".Plan" />
-        <activity android:name=".Grocery" />
+        <activity android:name=".Food" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
