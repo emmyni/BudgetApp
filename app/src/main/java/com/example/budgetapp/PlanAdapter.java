@@ -19,6 +19,14 @@ public class PlanAdapter extends
     // Store a member variable for the plans
     private List<Plan> mPlans;
 
+    private Class[] mClasses = {
+            Grocery.class,
+            House.class,
+            Transportation.class,
+            Entertainment.class,
+            OtherExpenses.class,
+    };
+
     // Pass in the plans array into the constructor
     public PlanAdapter(Context context, List<Plan> plans) {
         mContext = context;
@@ -44,6 +52,7 @@ public class PlanAdapter extends
     public void onBindViewHolder(PlanAdapter.ViewHolder holder, int position) {
         // Get the data model based on position
         Plan plan = mPlans.get(position);
+        final int index = position;
 
         // Set item views based on your views and data model
         TextView textView = holder.nameTextView;
@@ -56,7 +65,7 @@ public class PlanAdapter extends
             public void onClick(View v) {
                 System.out.println("Button Clicked");
 
-                Intent activity2Intent = new Intent(mContext, PlanEntry.class);
+                Intent activity2Intent = new Intent(mContext, mClasses[index]);
                 mContext.startActivity(activity2Intent);
             }
 

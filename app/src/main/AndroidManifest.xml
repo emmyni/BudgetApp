@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".calendar"></activity>
+        <activity android:name=".OtherExpenses"></activity>
+        <activity android:name=".Entertainment" />
+        <activity android:name=".Transportation" />
+        <activity android:name=".House" />
+        <activity android:name=".calendar" />
         <activity android:name=".Plan" />
-        <activity android:name=".PlanEntry" />
+        <activity android:name=".Grocery" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
