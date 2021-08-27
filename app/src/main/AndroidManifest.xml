@@ -12,7 +12,7 @@
         <activity android:name=".OtherExpenses"></activity>
         <activity android:name=".Entertainment" />
         <activity android:name=".Transportation" />
-        <activity android:name=".House" />
+        <activity android:name=".Home" />
         <activity android:name=".calendar" />
         <activity android:name=".Plan" />
         <activity android:name=".Food" />

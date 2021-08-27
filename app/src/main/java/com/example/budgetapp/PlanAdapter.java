@@ -21,7 +21,7 @@ public class PlanAdapter extends
 
     private Class[] mClasses = {
             Food.class,
-            House.class,
+            Home.class,
             Transportation.class,
             Entertainment.class,
             OtherExpenses.class,
