@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:text="Grocery" />
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editGrocery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:text="Restaurant" />
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/editRestaurant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:text="Other" />
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/editOther"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
