@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:text="Subscriptions" />
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editSubscriptions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:text="Shopping" />
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/editShopping"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="Activities" />
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/editActivities"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:text="Other" />
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/editOther"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
