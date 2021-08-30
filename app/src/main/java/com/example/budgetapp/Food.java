@@ -15,9 +15,9 @@ public class Food extends AppCompatActivity {
     EditText mEditRestaurant;
     EditText mEditOther;
 
-    private String grocery;
-    private String restaurant;
-    private String other;
+    private Double grocery;
+    private Double restaurant;
+    private Double other;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +34,23 @@ public class Food extends AppCompatActivity {
                 {
                     public void onClick(View view)
                     {
-                        grocery = mEditGrocery.getText().toString();
-                        restaurant = mEditRestaurant.getText().toString();
-                        other = mEditOther.getText().toString();
-                        Log.v("EditText grocery", grocery);
-                        Log.v("EditText restaurant", restaurant);
-                        Log.v("EditText other", other);
+
+                        String strGrocery = mEditGrocery.getText().toString();
+                        String strRestaurant = mEditRestaurant.getText().toString();
+                        String strOther = mEditOther.getText().toString();
+
+                        if (!"".equals(strGrocery)){
+                            grocery = Double.parseDouble(strGrocery);
+                        }
+                        if (!"".equals(strRestaurant)){
+                            restaurant = Double.parseDouble(strRestaurant);
+                        }
+                        if (!"".equals(strOther)){
+                            other = Double.parseDouble(strOther);
+                        }
+                        Log.v("EditText grocery", "grocery " + grocery);
+                        Log.v("EditText restaurant", "restaurant " + restaurant);
+                        Log.v("EditText other", "other " + other);
                     }
                 });
     }
