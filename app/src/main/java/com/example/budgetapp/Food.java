@@ -19,6 +19,16 @@ public class Food extends AppCompatActivity {
     private Double restaurant;
     private Double other;
 
+    public Double getGrocery() {
+        return grocery;
+    }
+    public Double getRestaurant() {
+        return restaurant;
+    }
+    public Double getOther() {
+        return other;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,9 +58,10 @@ public class Food extends AppCompatActivity {
                         if (!"".equals(strOther)){
                             other = Double.parseDouble(strOther);
                         }
-                        Log.v("EditText grocery", "grocery " + grocery);
-                        Log.v("EditText restaurant", "restaurant " + restaurant);
-                        Log.v("EditText other", "other " + other);
+                        Log.v("EditText ", "hello");
+                        Log.v("EditText grocery", "grocery " + getGrocery());
+                        Log.v("EditText restaurant", "restaurant " + getRestaurant());
+                        Log.v("EditText other", "other " + getOther());
                     }
                 });
     }

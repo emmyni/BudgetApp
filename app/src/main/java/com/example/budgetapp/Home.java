@@ -36,7 +36,6 @@ public class Home extends AppCompatActivity {
                 {
                     public void onClick(View view)
                     {
-
                         String strSubscriptions = mEditSubscriptions.getText().toString();
                         String strShopping = mEditShopping.getText().toString();
                         String strActivities = mEditActivities.getText().toString();
