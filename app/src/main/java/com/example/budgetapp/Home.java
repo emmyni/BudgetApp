@@ -10,15 +10,28 @@ import android.widget.EditText;
 
 public class Home extends AppCompatActivity {
     Button mButton;
-    EditText mEditSubscriptions;
-    EditText mEditShopping;
-    EditText mEditActivities;
+    EditText mEditRent;
+    EditText mEditPower;
+    EditText mEditInternet;
     EditText mEditOther;
 
-    private Double subscriptions;
-    private Double shopping;
-    private Double activities;
+    private Double rent;
+    private Double power;
+    private Double internet;
     private Double other;
+
+    public Double getRent() {
+        return rent;
+    }
+    public Double getPower() {
+        return power;
+    }
+    public Double getInternet() {
+        return internet;
+    }
+    public Double getOther() {
+        return other;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +39,9 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         mButton = (Button)findViewById(R.id.button);
-        mEditSubscriptions   = (EditText)findViewById(R.id.editSubscriptions);
-        mEditShopping   = (EditText)findViewById(R.id.editShopping);
-        mEditActivities   = (EditText)findViewById(R.id.editActivities);
+        mEditRent   = (EditText)findViewById(R.id.editRent);
+        mEditPower   = (EditText)findViewById(R.id.editPower);
+        mEditInternet   = (EditText)findViewById(R.id.editInternet);
         mEditOther   = (EditText)findViewById(R.id.editOther);
 
         mButton.setOnClickListener(
@@ -36,27 +49,27 @@ public class Home extends AppCompatActivity {
                 {
                     public void onClick(View view)
                     {
-                        String strSubscriptions = mEditSubscriptions.getText().toString();
-                        String strShopping = mEditShopping.getText().toString();
-                        String strActivities = mEditActivities.getText().toString();
+                        String strRent = mEditRent.getText().toString();
+                        String strPower = mEditPower.getText().toString();
+                        String strInternet = mEditInternet.getText().toString();
                         String strOther = mEditOther.getText().toString();
 
-                        if (!"".equals(strSubscriptions)){
-                            subscriptions = Double.parseDouble(strSubscriptions);
+                        if (!"".equals(strRent)){
+                            rent = Double.parseDouble(strRent);
                         }
-                        if (!"".equals(strShopping)){
-                            shopping = Double.parseDouble(strShopping);
+                        if (!"".equals(strPower)){
+                            power = Double.parseDouble(strPower);
                         }
-                        if (!"".equals(strActivities)){
-                            activities = Double.parseDouble(strActivities);
+                        if (!"".equals(strInternet)){
+                            internet = Double.parseDouble(strInternet);
                         }
                         if (!"".equals(strOther)){
                             other = Double.parseDouble(strOther);
                         }
-                        Log.v("EditText subscriptions", "subscriptions " + subscriptions);
-                        Log.v("EditText shopping", "shopping " + shopping);
-                        Log.v("EditText activities", "activities " + activities);
-                        Log.v("EditText other", "other " + other);
+                        Log.v("EditText ", "rent " + getRent());
+                        Log.v("EditText ", "power " + getPower());
+                        Log.v("EditText ", "internet " + getInternet());
+                        Log.v("EditText other", "other " + getOther());
                     }
                 });
     }

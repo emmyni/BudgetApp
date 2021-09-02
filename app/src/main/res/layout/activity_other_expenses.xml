@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:text="Vacation" />
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editVacation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:text="Emergency" />
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/editEmergency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:text="Savings" />
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/editSavings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"

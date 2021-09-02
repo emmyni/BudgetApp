@@ -20,6 +20,19 @@ public class Entertainment extends AppCompatActivity {
     private Double activities;
     private Double other;
 
+    public Double getSubscriptions() {
+        return subscriptions;
+    }
+    public Double getShopping() {
+        return shopping;
+    }
+    public Double getActivities() {
+        return activities;
+    }
+    public Double getOther() {
+        return other;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +67,10 @@ public class Entertainment extends AppCompatActivity {
                         if (!"".equals(strOther)){
                             other = Double.parseDouble(strOther);
                         }
-                        Log.v("EditText subscriptions", "subscriptions " + subscriptions);
-                        Log.v("EditText shopping", "shopping " + shopping);
-                        Log.v("EditText activities", "activities " + activities);
-                        Log.v("EditText other", "other " + other);
+                        Log.v("EditText subscriptions", "subscriptions " + getSubscriptions());
+                        Log.v("EditText shopping", "shopping " + getShopping());
+                        Log.v("EditText activities", "activities " + getActivities());
+                        Log.v("EditText other", "other " + getOther());
                     }
                 });
     }

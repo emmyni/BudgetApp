@@ -58,7 +58,6 @@ public class Food extends AppCompatActivity {
                         if (!"".equals(strOther)){
                             other = Double.parseDouble(strOther);
                         }
-                        Log.v("EditText ", "hello");
                         Log.v("EditText grocery", "grocery " + getGrocery());
                         Log.v("EditText restaurant", "restaurant " + getRestaurant());
                         Log.v("EditText other", "other " + getOther());

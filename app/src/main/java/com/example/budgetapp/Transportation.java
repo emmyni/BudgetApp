@@ -17,9 +17,22 @@ public class Transportation extends AppCompatActivity {
     EditText mEditOther;
 
     private Double gas;
-    private Double maintenace;
+    private Double maintenance;
     private Double publicTransport;
     private Double other;
+
+    public Double getGas() {
+        return gas;
+    }
+    public Double getMaintenance() {
+        return maintenance;
+    }
+    public Double getPublicTransport() {
+        return publicTransport;
+    }
+    public Double getOther() {
+        return other;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +60,7 @@ public class Transportation extends AppCompatActivity {
                             gas = Double.parseDouble(strGas);
                         }
                         if (!"".equals(strMaintenance)){
-                            maintenace = Double.parseDouble(strMaintenance);
+                            maintenance = Double.parseDouble(strMaintenance);
                         }
                         if (!"".equals(strPublicTransport)){
                             publicTransport = Double.parseDouble(strPublicTransport);
@@ -55,10 +68,10 @@ public class Transportation extends AppCompatActivity {
                         if (!"".equals(strOther)){
                             other = Double.parseDouble(strOther);
                         }
-                        Log.v("EditText gas", "gas " + gas);
-                        Log.v("EditText maintenace", "maintenace " + maintenace);
-                        Log.v("EditText pTransport", "publicTransport " + publicTransport);
-                        Log.v("EditText other", "other " + other);
+                        Log.v("EditText gas", "gas " + getGas());
+                        Log.v("EditText maintenance", "maintenance " + getMaintenance());
+                        Log.v("EditText pTransport", "publicTransport " + getPublicTransport());
+                        Log.v("EditText other", "other " + getOther());
                     }
                 });
     }
