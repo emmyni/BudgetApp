@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OtherExpenses"></activity>
+        <activity android:name=".Overview"></activity>
+        <activity android:name=".OtherExpenses" />
         <activity android:name=".Entertainment" />
         <activity android:name=".Transportation" />
         <activity android:name=".Home" />
