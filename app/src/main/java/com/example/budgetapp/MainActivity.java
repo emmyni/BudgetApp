@@ -4,28 +4,35 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    ArrayList<Plan> plans;
+//    ArrayList<Plan> plans;
+    Button mButton;
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Lookup the recyclerview in activity layout
-        RecyclerView rvPlans = (RecyclerView) findViewById(R.id.rvPlans);
+        mContext = this;
 
-        // Initialize plans
-        plans = Plan.createPlansList(5);
-        // Create adapter passing in the sample user data
-        PlanAdapter adapter = new PlanAdapter(this, plans);
-        // Attach the adapter to the recyclerview to populate items
-        rvPlans.setAdapter(adapter);
-        // Set layout manager to position the items
-        rvPlans.setLayoutManager(new LinearLayoutManager(this));
+        mButton = (Button)findViewById(R.id.button);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println("Button Clicked");
+
+                Intent activity2Intent = new Intent(mContext, Overview.class);
+                mContext.startActivity(activity2Intent);
+            }
+
+        });
     }
 }
