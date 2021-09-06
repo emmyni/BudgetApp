@@ -17,16 +17,16 @@ public class Overview extends AppCompatActivity {
         setContentView(R.layout.activity_overview);
 
         // Lookup the recyclerview in activity layout
-        RecyclerView rvPlans = (RecyclerView) findViewById(R.id.rvPlans);
+        RecyclerView rvIncome = (RecyclerView) findViewById(R.id.rvIncome);
 
         // Initialize plans
         plans = Plan.createPlansList(5);
         // Create adapter passing in the sample user data
         PlanAdapter adapter = new PlanAdapter(this, plans);
         // Attach the adapter to the recyclerview to populate items
-        rvPlans.setAdapter(adapter);
+        rvIncome.setAdapter(adapter);
         // Set layout manager to position the items
-        rvPlans.setLayoutManager(new LinearLayoutManager(this));
+        rvIncome.setLayoutManager(new LinearLayoutManager(this));
 
         // Lookup the recyclerview in activity layout
         RecyclerView rvExpenses = (RecyclerView) findViewById(R.id.rvExpenses);

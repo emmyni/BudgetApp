@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         android:text="Income"
-        app:layout_constraintBottom_toTopOf="@+id/rvPlans"
+        app:layout_constraintBottom_toTopOf="@+id/rvIncome"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,7 +28,7 @@
         android:text="Expenses"
         app:layout_constraintBottom_toTopOf="@+id/rvExpenses"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvPlans" />
+        app:layout_constraintTop_toBottomOf="@+id/rvIncome" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPlans"
+        android:id="@+id/rvIncome"
         android:layout_width="388dp"
         android:layout_height="311dp"
         android:layout_marginStart="8dp"
