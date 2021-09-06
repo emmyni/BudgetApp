@@ -27,5 +27,17 @@ public class Overview extends AppCompatActivity {
         rvPlans.setAdapter(adapter);
         // Set layout manager to position the items
         rvPlans.setLayoutManager(new LinearLayoutManager(this));
+
+        // Lookup the recyclerview in activity layout
+        RecyclerView rvExpenses = (RecyclerView) findViewById(R.id.rvExpenses);
+
+        // Initialize plans
+        plans = Plan.createPlansList(5);
+        // Create adapter passing in the sample user data
+        PlanAdapter adapterExpenses = new PlanAdapter(this, plans);
+        // Attach the adapter to the recyclerview to populate items
+        rvExpenses.setAdapter(adapterExpenses);
+        // Set layout manager to position the items
+        rvExpenses.setLayoutManager(new LinearLayoutManager(this));
     }
 }
