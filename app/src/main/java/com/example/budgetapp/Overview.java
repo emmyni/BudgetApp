@@ -9,7 +9,8 @@ import android.os.Bundle;
 import java.util.ArrayList;
 
 public class Overview extends AppCompatActivity {
-    ArrayList<Plan> plans;
+    ArrayList<Plan> expenses;
+    ArrayList<Plan> income;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +21,9 @@ public class Overview extends AppCompatActivity {
         RecyclerView rvIncome = (RecyclerView) findViewById(R.id.rvIncome);
 
         // Initialize plans
-        plans = Plan.createPlansList(5);
+        expenses = Plan.createPlansList(5, true);
         // Create adapter passing in the sample user data
-        PlanAdapter adapter = new PlanAdapter(this, plans);
+        PlanAdapter adapter = new PlanAdapter(this, expenses, true);
         // Attach the adapter to the recyclerview to populate items
         rvIncome.setAdapter(adapter);
         // Set layout manager to position the items
@@ -32,9 +33,9 @@ public class Overview extends AppCompatActivity {
         RecyclerView rvExpenses = (RecyclerView) findViewById(R.id.rvExpenses);
 
         // Initialize plans
-        plans = Plan.createPlansList(5);
+        income = Plan.createPlansList(1, false);
         // Create adapter passing in the sample user data
-        PlanAdapter adapterExpenses = new PlanAdapter(this, plans);
+        PlanAdapter adapterExpenses = new PlanAdapter(this, income, false);
         // Attach the adapter to the recyclerview to populate items
         rvExpenses.setAdapter(adapterExpenses);
         // Set layout manager to position the items

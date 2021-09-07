@@ -19,7 +19,9 @@ public class PlanAdapter extends
     // Store a member variable for the plans
     private List<Plan> mPlans;
 
-    private Class[] mClasses = {
+    private boolean mIsExpense;
+
+    private Class[] mClassesExpense = {
             Food.class,
             Home.class,
             Transportation.class,
@@ -27,10 +29,15 @@ public class PlanAdapter extends
             OtherExpenses.class,
     };
 
+    private Class[] mClassesIncome = {
+            Income.class,
+    };
+
     // Pass in the plans array into the constructor
-    public PlanAdapter(Context context, List<Plan> plans) {
+    public PlanAdapter(Context context, List<Plan> plans, boolean isExpense) {
         mContext = context;
         mPlans = plans;
+        mIsExpense = isExpense;
     }
 
     // Usually involves inflating a layout from XML and returning the holder
@@ -65,7 +72,8 @@ public class PlanAdapter extends
             public void onClick(View v) {
                 System.out.println("Button Clicked");
 
-                Intent activity2Intent = new Intent(mContext, mClasses[index]);
+                Class[] chosenType = mIsExpense ? mClassesExpense : mClassesIncome;
+                Intent activity2Intent = new Intent(mContext, chosenType[index]);
                 mContext.startActivity(activity2Intent);
             }
 

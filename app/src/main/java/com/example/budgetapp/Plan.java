@@ -15,16 +15,15 @@ public class Plan {
         return mName;
     }
 
-    public boolean isOnline() {
-        return mOnline;
-    }
-
-    public static ArrayList<Plan> createPlansList(int numPlans) {
+    public static ArrayList<Plan> createPlansList(int numPlans, boolean isExpense) {
         ArrayList<Plan> plans = new ArrayList<Plan>();
-        String[] type = {"Grocery", "House", "Transportation", "Entertainment", "Other"};
+        String[] typeExpense = {"Grocery", "House", "Transportation", "Entertainment", "Other"};
+        String[] typeIncome = {"Income"};
+
+        String[] chosenType = isExpense ? typeExpense : typeIncome;
 
         for (int i = 1; i <= numPlans; i++) {
-            plans.add(new Plan(type[i-1], i <= numPlans / 2));
+            plans.add(new Plan(chosenType[i-1], i <= numPlans / 2));
         }
 
         return plans;
