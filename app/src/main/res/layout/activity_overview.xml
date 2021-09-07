@@ -39,8 +39,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvExpenses"
-        android:layout_width="393dp"
-        android:layout_height="303dp"
+        android:layout_width="379dp"
+        android:layout_height="521dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,8 +49,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvIncome"
-        android:layout_width="388dp"
-        android:layout_height="311dp"
+        android:layout_width="381dp"
+        android:layout_height="83dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         app:layout_constraintBottom_toTopOf="@+id/textView4"

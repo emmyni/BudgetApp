@@ -18,7 +18,7 @@ public class Overview extends AppCompatActivity {
         setContentView(R.layout.activity_overview);
 
         // Lookup the recyclerview in activity layout
-        RecyclerView rvIncome = (RecyclerView) findViewById(R.id.rvIncome);
+        RecyclerView rvIncome = (RecyclerView) findViewById(R.id.rvExpenses);
 
         // Initialize plans
         expenses = Plan.createPlansList(5, true);
@@ -30,7 +30,7 @@ public class Overview extends AppCompatActivity {
         rvIncome.setLayoutManager(new LinearLayoutManager(this));
 
         // Lookup the recyclerview in activity layout
-        RecyclerView rvExpenses = (RecyclerView) findViewById(R.id.rvExpenses);
+        RecyclerView rvExpenses = (RecyclerView) findViewById(R.id.rvIncome);
 
         // Initialize plans
         income = Plan.createPlansList(1, false);
