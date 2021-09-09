@@ -77,7 +77,7 @@
                     android:text="Income"
                     app:layout_constraintStart_toStartOf="parent" />
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/textViewIncome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -101,7 +101,7 @@
                     android:text="Expenses"
                     app:layout_constraintStart_toStartOf="parent" />
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/textViewExpenses"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -124,7 +124,7 @@
                     android:text="Savings"
                     app:layout_constraintStart_toStartOf="parent" />
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/textViewSavings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
