@@ -29,8 +29,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:text="Calendar"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
             android:textSize="25dp"
             app:layout_constraintStart_toStartOf="parent" />
+
         <CalendarView
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
