@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 System.out.println("Button Clicked");
 
-                Intent activity2Intent = new Intent(mContext, CalendarPage.class);
+                Intent activity2Intent = new Intent(mContext, Start.class);
                 mContext.startActivity(activity2Intent);
             }
 
