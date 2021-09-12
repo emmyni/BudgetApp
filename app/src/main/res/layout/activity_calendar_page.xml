@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalendarPage">
+    tools:context=".CalendarPage"
+    android:background="@drawable/background1">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -26,11 +27,11 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginStart="16dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="0dp"
             android:layout_marginLeft="16dp"
             android:text="Calendar"
             android:textAlignment="center"
-            android:layout_gravity="center_horizontal"
             android:textSize="25dp"
             app:layout_constraintStart_toStartOf="parent" />
 
