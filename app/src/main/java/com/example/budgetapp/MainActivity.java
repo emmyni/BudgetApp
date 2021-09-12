@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-//    ArrayList<Plan> plans;
     Button mButton;
     Context mContext;
 
