@@ -4,15 +4,19 @@ import java.util.ArrayList;
 
 public class Plan {
     private String mName;
-    private boolean mOnline;
+    private Double mValue;
 
-    public Plan(String name, boolean online) {
+    public Plan(String name, Double value) {
         mName = name;
-        mOnline = online;
+        mValue = value;
     }
 
     public String getName() {
         return mName;
+    }
+
+    public Double getValue() {
+        return mValue;
     }
 
     public static ArrayList<Plan> createPlansList(int numPlans, boolean isExpense) {
@@ -20,10 +24,14 @@ public class Plan {
         String[] typeExpense = {"Grocery", "House", "Transportation", "Entertainment", "Other"};
         String[] typeIncome = {"Income"};
 
+        Double[] valueExpense = {110.45, 1433.2, 11.00, 45.3, 50. };
+        Double[] valueIncome = {11000.45};
+
         String[] chosenType = isExpense ? typeExpense : typeIncome;
+        Double[] chosenValueType = isExpense ? valueExpense : valueIncome;
 
         for (int i = 1; i <= numPlans; i++) {
-            plans.add(new Plan(chosenType[i-1], i <= numPlans / 2));
+            plans.add(new Plan(chosenType[i-1], chosenValueType[i-1]));
         }
 
         return plans;

@@ -64,6 +64,8 @@ public class PlanAdapter extends
         // Set item views based on your views and data model
         TextView textView = holder.nameTextView;
         textView.setText(plan.getName());
+        TextView valueTextView = holder.valueTextView;
+        valueTextView.setText("$"+plan.getValue().toString());
         Button button = holder.messageButton;
         button.setText("Edit");
         button.setEnabled(true);
@@ -93,6 +95,7 @@ public class PlanAdapter extends
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView nameTextView;
+        public TextView valueTextView;
         public Button messageButton;
 
         // We also create a constructor that accepts the entire item row
@@ -103,6 +106,7 @@ public class PlanAdapter extends
             super(itemView);
 
             nameTextView = (TextView) itemView.findViewById(R.id.plan_name);
+            valueTextView = (TextView) itemView.findViewById(R.id.cost);
             messageButton = (Button) itemView.findViewById(R.id.message_button);
         }
     }
