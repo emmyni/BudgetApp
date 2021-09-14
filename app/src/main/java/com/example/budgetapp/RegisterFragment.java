@@ -81,7 +81,7 @@ public class RegisterFragment extends Fragment {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         SendUserToNextActivity();
-                        Toast.makeText(mContext, "Successful Registration", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Registration Successful", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(mContext, ""+task.getException(), Toast.LENGTH_SHORT).show();
                     }
