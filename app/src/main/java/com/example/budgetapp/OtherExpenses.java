@@ -14,6 +14,8 @@ public class OtherExpenses extends AppCompatActivity {
     EditText mEditEmergency;
     EditText mEditSavings;
 
+    String mUid;
+
     private Double vacation;
     private Double emergency;
     private Double savings;
@@ -32,6 +34,11 @@ public class OtherExpenses extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other_expenses);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            mUid = extras.getString("uid");
+        }
 
         mButton = (Button)findViewById(R.id.button);
         mEditVacation   = (EditText)findViewById(R.id.editVacation);

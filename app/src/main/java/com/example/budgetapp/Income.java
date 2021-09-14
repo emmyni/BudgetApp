@@ -15,6 +15,8 @@ public class Income extends AppCompatActivity {
     EditText mEditInvestment;
     EditText mEditOther;
 
+    String mUid;
+
     private Double salary;
     private Double investment;
     private Double other;
@@ -33,6 +35,11 @@ public class Income extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            mUid = extras.getString("uid");
+        }
 
         mButton = (Button)findViewById(R.id.button);
         mEditSalary   = (EditText)findViewById(R.id.editSalary);

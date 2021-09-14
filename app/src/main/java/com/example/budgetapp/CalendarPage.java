@@ -9,12 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class CalendarPage extends AppCompatActivity {
     Button mButton;
     Context mContext;
     TextView incomeText;
     TextView expensesText;
     TextView savingsText;
+
+    String mUid;
 
     private Double income;
     private Double expenses;
@@ -37,6 +42,11 @@ public class CalendarPage extends AppCompatActivity {
         expensesText.setText(expenses.toString());
         savingsText.setText(savings.toString());
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            mUid = extras.getString("uid");
+        }
+
         mContext = this;
 
         mButton = (Button)findViewById(R.id.button);
@@ -44,8 +54,9 @@ public class CalendarPage extends AppCompatActivity {
             public void onClick(View v) {
                 System.out.println("Button Clicked");
 
-                Intent activity2Intent = new Intent(mContext, Overview.class);
-                mContext.startActivity(activity2Intent);
+                Intent intent = new Intent(mContext, Overview.class);
+                intent.putExtra("uid", mUid);
+                mContext.startActivity(intent);
             }
 
         });

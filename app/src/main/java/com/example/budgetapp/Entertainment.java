@@ -15,6 +15,8 @@ public class Entertainment extends AppCompatActivity {
     EditText mEditActivities;
     EditText mEditOther;
 
+    String mUid;
+
     private Double subscriptions;
     private Double shopping;
     private Double activities;
@@ -37,6 +39,11 @@ public class Entertainment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entertainment);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            mUid = extras.getString("uid");
+        }
 
         mButton = (Button)findViewById(R.id.button);
         mEditSubscriptions   = (EditText)findViewById(R.id.editSubscriptions);

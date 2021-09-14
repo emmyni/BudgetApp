@@ -2,6 +2,7 @@ package com.example.budgetapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ public class PlanAdapter extends
 
     private boolean mIsExpense;
 
+    private String mUid;
+
     private Class[] mClassesExpense = {
             Food.class,
             Home.class,
@@ -34,10 +37,11 @@ public class PlanAdapter extends
     };
 
     // Pass in the plans array into the constructor
-    public PlanAdapter(Context context, List<Plan> plans, boolean isExpense) {
+    public PlanAdapter(Context context, List<Plan> plans, boolean isExpense, String uid) {
         mContext = context;
         mPlans = plans;
         mIsExpense = isExpense;
+        mUid = uid;
     }
 
     // Usually involves inflating a layout from XML and returning the holder
@@ -76,6 +80,7 @@ public class PlanAdapter extends
 
                 Class[] chosenType = mIsExpense ? mClassesExpense : mClassesIncome;
                 Intent activity2Intent = new Intent(mContext, chosenType[index]);
+                activity2Intent.putExtra("uid", mUid);
                 mContext.startActivity(activity2Intent);
             }
 

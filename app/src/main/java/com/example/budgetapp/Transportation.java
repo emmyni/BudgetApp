@@ -16,6 +16,8 @@ public class Transportation extends AppCompatActivity {
     EditText mEditPublicTransport;
     EditText mEditOther;
 
+    String mUid;
+
     private Double gas;
     private Double maintenance;
     private Double publicTransport;
@@ -39,6 +41,11 @@ public class Transportation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transportation);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            mUid = extras.getString("uid");
+        }
+
         mButton = (Button)findViewById(R.id.button);
         mEditGas   = (EditText)findViewById(R.id.editGas);
         mEditMaintenance   = (EditText)findViewById(R.id.editMaintenance);
@@ -50,7 +57,6 @@ public class Transportation extends AppCompatActivity {
                 {
                     public void onClick(View view)
                     {
-
                         String strGas = mEditGas.getText().toString();
                         String strMaintenance = mEditMaintenance.getText().toString();
                         String strPublicTransport = mEditPublicTransport.getText().toString();

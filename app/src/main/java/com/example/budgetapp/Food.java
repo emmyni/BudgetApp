@@ -8,12 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Food extends AppCompatActivity {
 
     Button mButton;
     EditText mEditGrocery;
     EditText mEditRestaurant;
     EditText mEditOther;
+
+    String mUid;
 
     private Double grocery;
     private Double restaurant;
@@ -34,6 +39,11 @@ public class Food extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            mUid = extras.getString("uid");
+        }
+
         mButton = (Button)findViewById(R.id.button);
         mEditGrocery   = (EditText)findViewById(R.id.editGrocery);
         mEditRestaurant   = (EditText)findViewById(R.id.editRestaurant);
@@ -44,6 +54,10 @@ public class Food extends AppCompatActivity {
                 {
                     public void onClick(View view)
                     {
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef = database.getReference(mUid);
+
+                        myRef.setValue("Hello, World!");
 
                         String strGrocery = mEditGrocery.getText().toString();
                         String strRestaurant = mEditRestaurant.getText().toString();

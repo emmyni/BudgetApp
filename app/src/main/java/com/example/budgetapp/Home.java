@@ -15,6 +15,8 @@ public class Home extends AppCompatActivity {
     EditText mEditInternet;
     EditText mEditOther;
 
+    String mUid;
+
     private Double rent;
     private Double power;
     private Double internet;
@@ -37,6 +39,11 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            mUid = extras.getString("uid");
+        }
 
         mButton = (Button)findViewById(R.id.button);
         mEditRent   = (EditText)findViewById(R.id.editRent);

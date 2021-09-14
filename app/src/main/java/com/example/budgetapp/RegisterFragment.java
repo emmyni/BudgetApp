@@ -94,6 +94,7 @@ public class RegisterFragment extends Fragment {
     private void SendUserToNextActivity() {
         Intent intent = new Intent(mContext, CalendarPage.class);
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("uid", mUser.getUid());
         mContext.startActivity(intent);
     }
 
