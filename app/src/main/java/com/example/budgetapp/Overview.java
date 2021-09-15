@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -16,6 +17,7 @@ public class Overview extends AppCompatActivity {
     ArrayList<Plan> income;
 
     String mUid;
+    String mDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,14 @@ public class Overview extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             mUid = extras.getString("uid");
+            mDate = extras.getString("date");
+            mDate  = mDate.substring(0, mDate.length() - 3);
+            Log.d("Current Date: ", mDate);
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference(mUid);
+
+            myRef.setValue(mDate);
         }
 
         // Lookup the recyclerview in activity layout

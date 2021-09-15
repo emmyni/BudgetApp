@@ -5,12 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class CalendarPage extends AppCompatActivity {
     Button mButton;
@@ -19,7 +24,10 @@ public class CalendarPage extends AppCompatActivity {
     TextView expensesText;
     TextView savingsText;
 
+    CalendarView myCalendar;
+
     String mUid;
+    String mCurDate;
 
     private Double income;
     private Double expenses;
@@ -56,9 +64,31 @@ public class CalendarPage extends AppCompatActivity {
 
                 Intent intent = new Intent(mContext, Overview.class);
                 intent.putExtra("uid", mUid);
+                intent.putExtra("date", mCurDate);
                 mContext.startActivity(intent);
             }
 
         });
+
+        myCalendar = (CalendarView) findViewById(R.id.calendarView);
+
+        Calendar date = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        mCurDate = sdf.format(date.getTime());
+
+        CalendarView.OnDateChangeListener myCalendarListener = new CalendarView.OnDateChangeListener(){
+
+            public void onSelectedDayChange(CalendarView view, int year, int month, int day){
+
+                // add one because month starts at 0
+                month = month + 1;
+                // output to log cat **not sure how to format year to two places here**
+                mCurDate = year+"-"+month+"-"+day;
+            }
+        };
+
+        myCalendar.setOnDateChangeListener(myCalendarListener);
+
     }
 }
