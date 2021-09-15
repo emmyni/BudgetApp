@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,21 +30,18 @@ public class Overview extends AppCompatActivity {
             mUid = extras.getString("uid");
             mDate = extras.getString("date");
             mDate  = mDate.substring(0, mDate.length() - 3);
-            Log.d("Current Date: ", mDate);
 
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference(mUid);
-
-            myRef.setValue(mDate);
+            TextView title = (TextView) findViewById(R.id.title);
+            title.setText(mDate);
         }
 
         // Lookup the recyclerview in activity layout
         RecyclerView rvIncome = (RecyclerView) findViewById(R.id.rvExpenses);
 
         // Initialize plans
-        expenses = Plan.createPlansList(5, true);
+        expenses = Plan.createPlansList(5, true, mUid, mDate);
         // Create adapter passing in the sample user data
-        PlanAdapter adapter = new PlanAdapter(this, expenses, true, mUid);
+        PlanAdapter adapter = new PlanAdapter(this, expenses, true, mUid, mDate);
         // Attach the adapter to the recyclerview to populate items
         rvIncome.setAdapter(adapter);
         // Set layout manager to position the items
@@ -53,9 +51,9 @@ public class Overview extends AppCompatActivity {
         RecyclerView rvExpenses = (RecyclerView) findViewById(R.id.rvIncome);
 
         // Initialize plans
-        income = Plan.createPlansList(1, false);
+        income = Plan.createPlansList(1, false, mUid, mDate);
         // Create adapter passing in the sample user data
-        PlanAdapter adapterExpenses = new PlanAdapter(this, income, false, mUid);
+        PlanAdapter adapterExpenses = new PlanAdapter(this, income, false, mUid, mDate);
         // Attach the adapter to the recyclerview to populate items
         rvExpenses.setAdapter(adapterExpenses);
         // Set layout manager to position the items

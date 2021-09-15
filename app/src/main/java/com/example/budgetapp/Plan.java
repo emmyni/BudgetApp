@@ -19,7 +19,7 @@ public class Plan {
         return mValue;
     }
 
-    public static ArrayList<Plan> createPlansList(int numPlans, boolean isExpense) {
+    public static ArrayList<Plan> createPlansList(int numPlans, boolean isExpense, String uid, String date) {
         ArrayList<Plan> plans = new ArrayList<Plan>();
         String[] typeExpense = {"Grocery", "House", "Transportation", "Entertainment", "Other"};
         String[] typeIncome = {"Income"};
