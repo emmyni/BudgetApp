@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 /**
@@ -27,7 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class RegisterFragment extends Fragment {
     Button mButton;
     Context mContext;
-    EditText inputEmail, inputPassword, inputConfirmPassword;
+    EditText inputName, inputEmail, inputPassword, inputConfirmPassword;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     FirebaseAuth mAuth;
@@ -45,6 +47,7 @@ public class RegisterFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_register, container, false);
 
+        inputName = (EditText)view.findViewById(R.id.et_name);
         inputEmail = (EditText)view.findViewById(R.id.et_email);
         inputPassword = (EditText)view.findViewById(R.id.et_password);
         inputConfirmPassword = (EditText)view.findViewById(R.id.et_repassword);
@@ -65,6 +68,7 @@ public class RegisterFragment extends Fragment {
     }
 
     private void PerformAuth() {
+        String name = inputName.getText().toString();
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
         String confirmPassword = inputConfirmPassword.getText().toString();
@@ -80,6 +84,11 @@ public class RegisterFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef = database.getReference(mUser.getUid());
+
+                        myRef.setValue( new User(name));
+
                         SendUserToNextActivity();
                         Toast.makeText(mContext, "Registration Successful", Toast.LENGTH_SHORT).show();
                     } else {
@@ -96,6 +105,16 @@ public class RegisterFragment extends Fragment {
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("uid", mUser.getUid());
         mContext.startActivity(intent);
+    }
+
+    public static class User {
+
+        public String name;
+
+        public User(String full_name) {
+            name = full_name;
+        }
+
     }
 
 }
