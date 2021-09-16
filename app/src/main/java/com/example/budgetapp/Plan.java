@@ -1,5 +1,15 @@
 package com.example.budgetapp;
 
+import android.util.Log;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class Plan {
@@ -19,13 +29,10 @@ public class Plan {
         return mValue;
     }
 
-    public static ArrayList<Plan> createPlansList(int numPlans, boolean isExpense, String uid, String date) {
+    public static ArrayList<Plan> createPlansList(int numPlans, boolean isExpense, Double[] valueExpense, Double[] valueIncome, String date) {
         ArrayList<Plan> plans = new ArrayList<Plan>();
         String[] typeExpense = {"Grocery", "House", "Transportation", "Entertainment", "Other"};
         String[] typeIncome = {"Income"};
-
-        Double[] valueExpense = {110.45, 1433.2, 11.00, 45.3, 50. };
-        Double[] valueIncome = {11000.45};
 
         String[] chosenType = isExpense ? typeExpense : typeIncome;
         Double[] chosenValueType = isExpense ? valueExpense : valueIncome;
