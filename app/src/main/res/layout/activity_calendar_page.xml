@@ -99,29 +99,29 @@
                     android:text="Expenses Value"
                     app:layout_constraintStart_toStartOf="parent" />
             </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+<!--            <TableRow-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" >-->
 
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="Savings"
-                    app:layout_constraintStart_toStartOf="parent" />
-                <TextView
-                    android:id="@+id/textViewSavings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="Savings Value"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </TableRow>
+<!--                <TextView-->
+<!--                    android:id="@+id/textView12"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginLeft="16dp"-->
+<!--                    android:layout_marginBottom="16dp"-->
+<!--                    android:text="Savings"-->
+<!--                    app:layout_constraintStart_toStartOf="parent" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/textViewSavings"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginLeft="16dp"-->
+<!--                    android:layout_marginBottom="16dp"-->
+<!--                    android:text="Savings Value"-->
+<!--                    app:layout_constraintStart_toStartOf="parent" />-->
+<!--            </TableRow>-->
             <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"

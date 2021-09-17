@@ -1,6 +1,8 @@
 package com.example.budgetapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,8 +13,13 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,7 +29,7 @@ public class CalendarPage extends AppCompatActivity {
     Context mContext;
     TextView incomeText;
     TextView expensesText;
-    TextView savingsText;
+//    TextView savingsText;
 
     CalendarView myCalendar;
 
@@ -40,15 +47,7 @@ public class CalendarPage extends AppCompatActivity {
 
         incomeText = (TextView)findViewById(R.id.textViewIncome);
         expensesText = (TextView)findViewById(R.id.textViewExpenses);
-        savingsText = (TextView)findViewById(R.id.textViewSavings);
-
-        income = 11200.;
-        expenses = 1000.21;
-        savings = 10001.75;
-
-        incomeText.setText(income.toString());
-        expensesText.setText(expenses.toString());
-        savingsText.setText(savings.toString());
+//        savingsText = (TextView)findViewById(R.id.textViewSavings);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -89,6 +88,62 @@ public class CalendarPage extends AppCompatActivity {
         };
 
         myCalendar.setOnDateChangeListener(myCalendarListener);
+
+        final Double[] valueExpense = {0.00};
+        final Double[] valueIncome = {0.00};
+
+        String[] typeExpense = {"Grocery", "House", "Transportation", "Entertainment", "Other"};
+        String[] typeIncome = {"Income"};
+
+        String[][] detailsExpenses = {
+                {"grocery", "restaurant", "other"},
+                {"rent", "hydro", "internet", "other"},
+                {"gas", "maintenance", "publicTransport", "other"},
+                {"subscriptions", "shopping", "activities", "other"},
+                {"vacation", "emergencies", "savings"}
+        };
+        String[][] detailsIncome = {{"income"}};
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference(user.getUid());
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (int i = 0; i < typeExpense.length; i++) {
+                    if(dataSnapshot.child(typeExpense[i]).exists()) {
+                        for (int j=0; j < detailsExpenses[i].length; j++) {
+                            if(dataSnapshot.child(typeExpense[i]).child(detailsExpenses[i][j]).exists()) {
+                                valueExpense[0] += Double.parseDouble(dataSnapshot.child(typeExpense[i]).child(detailsExpenses[i][j]).getValue().toString());
+                            }
+                        }
+                    }
+                }
+
+                expensesText.setText(valueExpense[0].toString());
+
+                Log.d("Success: ", valueExpense[0].toString());
+
+                for (int i = 0; i < typeIncome.length; i++) {
+                    if(dataSnapshot.child(typeIncome[i]).exists()) {
+                        for (int j=0; j < detailsIncome[i].length; j++) {
+                            if(dataSnapshot.child(typeIncome[i]).child(detailsIncome[i][j]).exists()) {
+                                valueIncome[0] += Double.parseDouble(dataSnapshot.child(typeIncome[i]).child(detailsIncome[i][j]).getValue().toString());
+                            }
+                        }
+                        Log.d("Success: ", valueIncome[0].toString());
+                    }
+                }
+
+                incomeText.setText(valueIncome[0].toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
 
     }
 }
