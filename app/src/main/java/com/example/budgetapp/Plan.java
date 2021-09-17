@@ -29,16 +29,15 @@ public class Plan {
         return mValue;
     }
 
-    public static ArrayList<Plan> createPlansList(int numPlans, boolean isExpense, Double[] valueExpense, Double[] valueIncome, String date) {
+    public static ArrayList<Plan> createPlansList(int numPlans, boolean isExpense, Double[] values, String date) {
         ArrayList<Plan> plans = new ArrayList<Plan>();
         String[] typeExpense = {"Grocery", "House", "Transportation", "Entertainment", "Other"};
         String[] typeIncome = {"Income"};
 
         String[] chosenType = isExpense ? typeExpense : typeIncome;
-        Double[] chosenValueType = isExpense ? valueExpense : valueIncome;
 
         for (int i = 1; i <= numPlans; i++) {
-            plans.add(new Plan(chosenType[i-1], chosenValueType[i-1]));
+            plans.add(new Plan(chosenType[i-1], values[i-1]));
         }
 
         return plans;

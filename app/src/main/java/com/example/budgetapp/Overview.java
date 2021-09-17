@@ -56,30 +56,47 @@ public class Overview extends AppCompatActivity {
         String[] typeExpense = {"Grocery", "House", "Transportation", "Entertainment", "Other"};
         String[] typeIncome = {"Income"};
 
+        String[][] detailsExpenses = {
+                {"grocery", "restaurant", "other"},
+                {"rent", "hydro", "internet", "other"},
+                {"gas", "maintenance", "publicTransport", "other"},
+                {"subscriptions", "shopping", "activities", "other"},
+                {"vacation", "emergencies", "savings"}
+        };
+        String[][] detailsIncome = {{"income"}};
+
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (int i = 0; i < typeExpense.length; i++) {
                     if(dataSnapshot.child(typeExpense[i]).exists()) {
-                        valueExpense[i] = 12.00;  //TODO change
+//                        Log.d("values: ", dataSnapshot.getValue().toString());
+
+                        for (int j=0; j < detailsExpenses[i].length; j++) {
+                            if(dataSnapshot.child(typeExpense[i]).child(detailsExpenses[i][j]).exists()) {
+                                valueExpense[i] += Double.parseDouble(dataSnapshot.child(typeExpense[i]).child(detailsExpenses[i][j]).getValue().toString());
+                            }
+                        }
                         Log.d("Success: ", valueExpense[i].toString());
                     }
                 }
 
                 for (int i = 0; i < typeIncome.length; i++) {
                     if(dataSnapshot.child(typeIncome[i]).exists()) {
-                        valueIncome[i] = 12.00;  //TODO change
+                        for (int j=0; j < detailsIncome[i].length; j++) {
+                            if(dataSnapshot.child(typeIncome[i]).child(detailsIncome[i][j]).exists()) {
+                                valueIncome[i] += Double.parseDouble(dataSnapshot.child(typeIncome[i]).child(detailsIncome[i][j]).getValue().toString());
+                            }
+                        }
                         Log.d("Success: ", valueIncome[i].toString());
                     }
                 }
-
-                valueExpense[0] = 92.00;
 
                 // Lookup the recyclerview in activity layout
                 RecyclerView rvIncome = (RecyclerView) findViewById(R.id.rvExpenses);
 
                 // Initialize plans
-                expenses = Plan.createPlansList(5, true, valueExpense, valueIncome, mDate);
+                expenses = Plan.createPlansList(5, true, valueExpense, mDate);
                 // Create adapter passing in the sample user data
                 PlanAdapter adapter = new PlanAdapter(mContext, expenses, true, mUid, mDate);
                 // Attach the adapter to the recyclerview to populate items
@@ -91,7 +108,7 @@ public class Overview extends AppCompatActivity {
                 RecyclerView rvExpenses = (RecyclerView) findViewById(R.id.rvIncome);
 
                 // Initialize plans
-                income = Plan.createPlansList(1, false, valueExpense, valueIncome, mDate);
+                income = Plan.createPlansList(1, false, valueIncome, mDate);
                 // Create adapter passing in the sample user data
                 PlanAdapter adapterExpenses = new PlanAdapter(mContext, income, false, mUid, mDate);
                 // Attach the adapter to the recyclerview to populate items
