@@ -8,6 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class Transportation extends AppCompatActivity {
 
     Button mButton;
@@ -51,6 +57,29 @@ public class Transportation extends AppCompatActivity {
         mEditMaintenance   = (EditText)findViewById(R.id.editMaintenance);
         mEditPublicTransport   = (EditText)findViewById(R.id.editPublicTransport);
         mEditOther   = (EditText)findViewById(R.id.editOther);
+
+        EditText[] fields = {mEditGas, mEditMaintenance, mEditPublicTransport, mEditOther};
+        String[] details= {"gas", "maintenance", "publicTransport", "other"};
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference(mUid);
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child("Transportation").exists()) {
+                    for (int j=0; j < details.length; j++) {
+                        if(dataSnapshot.child("Transportation").child(details[j]).exists()) {
+                            fields[j].setText(dataSnapshot.child("Transportation").child(details[j]).getValue().toString());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
 
         mButton.setOnClickListener(
                 new View.OnClickListener()

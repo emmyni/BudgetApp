@@ -8,8 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Food extends AppCompatActivity {
 
@@ -49,15 +52,34 @@ public class Food extends AppCompatActivity {
         mEditRestaurant   = (EditText)findViewById(R.id.editRestaurant);
         mEditOther   = (EditText)findViewById(R.id.editOther);
 
+        EditText[] fields = {mEditGrocery, mEditRestaurant, mEditOther};
+        String[] details= {"grocery", "restaurant", "other"};
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference(mUid);
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child("Grocery").exists()) {
+                    for (int j=0; j < details.length; j++) {
+                        if(dataSnapshot.child("Grocery").child(details[j]).exists()) {
+                            fields[j].setText(dataSnapshot.child("Grocery").child(details[j]).getValue().toString());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
         mButton.setOnClickListener(
                 new View.OnClickListener()
                 {
                     public void onClick(View view)
                     {
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference myRef = database.getReference(mUid);
-
-                        myRef.setValue("Hello, World!");
 
                         String strGrocery = mEditGrocery.getText().toString();
                         String strRestaurant = mEditRestaurant.getText().toString();
