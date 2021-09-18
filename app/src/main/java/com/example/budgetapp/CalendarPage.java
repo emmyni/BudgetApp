@@ -102,7 +102,9 @@ public class CalendarPage extends AppCompatActivity {
                 {"subscriptions", "shopping", "activities", "other"},
                 {"vacation", "emergencies", "savings"}
         };
-        String[][] detailsIncome = {{"income"}};
+        String[][] detailsIncome = {
+                {"salary", "investment", "other"}
+        };
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 

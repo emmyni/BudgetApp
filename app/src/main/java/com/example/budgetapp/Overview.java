@@ -100,7 +100,7 @@ public class Overview extends AppCompatActivity {
                 // Initialize plans
                 expenses = Plan.createPlansList(5, true, valueExpense, mDate);
                 // Create adapter passing in the sample user data
-                PlanAdapter adapter = new PlanAdapter(mContext, expenses, true, mUid, mDate);
+                PlanAdapter adapter = new PlanAdapter(mContext, expenses, true, mDate);
                 // Attach the adapter to the recyclerview to populate items
                 rvIncome.setAdapter(adapter);
                 // Set layout manager to position the items
@@ -112,7 +112,7 @@ public class Overview extends AppCompatActivity {
                 // Initialize plans
                 income = Plan.createPlansList(1, false, valueIncome, mDate);
                 // Create adapter passing in the sample user data
-                PlanAdapter adapterExpenses = new PlanAdapter(mContext, income, false, mUid, mDate);
+                PlanAdapter adapterExpenses = new PlanAdapter(mContext, income, false, mDate);
                 // Attach the adapter to the recyclerview to populate items
                 rvExpenses.setAdapter(adapterExpenses);
                 // Set layout manager to position the items

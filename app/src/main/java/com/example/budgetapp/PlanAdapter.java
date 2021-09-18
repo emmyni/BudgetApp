@@ -22,7 +22,6 @@ public class PlanAdapter extends
 
     private boolean mIsExpense;
 
-    private String mUid;
     private String mDate;
 
     private Class[] mClassesExpense = {
@@ -38,11 +37,10 @@ public class PlanAdapter extends
     };
 
     // Pass in the plans array into the constructor
-    public PlanAdapter(Context context, List<Plan> plans, boolean isExpense, String uid, String date) {
+    public PlanAdapter(Context context, List<Plan> plans, boolean isExpense, String date) {
         mContext = context;
         mPlans = plans;
         mIsExpense = isExpense;
-        mUid = uid;
         mDate = date;
     }
 
@@ -82,7 +80,6 @@ public class PlanAdapter extends
 
                 Class[] chosenType = mIsExpense ? mClassesExpense : mClassesIncome;
                 Intent activity2Intent = new Intent(mContext, chosenType[index]);
-                activity2Intent.putExtra("uid", mUid);
                 activity2Intent.putExtra("date", mDate);
                 mContext.startActivity(activity2Intent);
             }

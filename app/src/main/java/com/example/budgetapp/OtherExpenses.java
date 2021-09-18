@@ -2,12 +2,16 @@ package com.example.budgetapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,7 +24,7 @@ public class OtherExpenses extends AppCompatActivity {
     EditText mEditEmergency;
     EditText mEditSavings;
 
-    String mUid;
+    private Context mContext;
 
     private Double vacation;
     private Double emergency;
@@ -41,10 +45,7 @@ public class OtherExpenses extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other_expenses);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            mUid = extras.getString("uid");
-        }
+        mContext = this;
 
         mButton = (Button)findViewById(R.id.button);
         mEditVacation   = (EditText)findViewById(R.id.editVacation);
@@ -54,8 +55,10 @@ public class OtherExpenses extends AppCompatActivity {
         EditText[] fields = {mEditVacation, mEditEmergency, mEditSavings};
         String[] details= {"vacation", "emergencies", "savings"};
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference(mUid);
+        DatabaseReference myRef = database.getReference(user.getUid());
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -97,6 +100,9 @@ public class OtherExpenses extends AppCompatActivity {
                         Log.v("EditText grocery", "grocery " + getVacation());
                         Log.v("EditText restaurant", "restaurant " + getEmergency());
                         Log.v("EditText other", "other " + getSavings());
+
+                        Intent activity2Intent = new Intent(mContext, CalendarPage.class);
+                        mContext.startActivity(activity2Intent);
                     }
                 });
     }

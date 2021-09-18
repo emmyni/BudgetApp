@@ -2,12 +2,16 @@ package com.example.budgetapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,7 +25,7 @@ public class Food extends AppCompatActivity {
     EditText mEditRestaurant;
     EditText mEditOther;
 
-    String mUid;
+    private Context mContext;
 
     private Double grocery;
     private Double restaurant;
@@ -42,10 +46,7 @@ public class Food extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            mUid = extras.getString("uid");
-        }
+        mContext = this;
 
         mButton = (Button)findViewById(R.id.button);
         mEditGrocery   = (EditText)findViewById(R.id.editGrocery);
@@ -55,8 +56,10 @@ public class Food extends AppCompatActivity {
         EditText[] fields = {mEditGrocery, mEditRestaurant, mEditOther};
         String[] details= {"grocery", "restaurant", "other"};
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference(mUid);
+        DatabaseReference myRef = database.getReference(user.getUid());
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -101,6 +104,9 @@ public class Food extends AppCompatActivity {
                         myRef.child("Grocery").child("grocery").setValue(grocery);
                         myRef.child("Grocery").child("restaurant").setValue(restaurant);
                         myRef.child("Grocery").child("other").setValue(other);
+
+                        Intent activity2Intent = new Intent(mContext, CalendarPage.class);
+                        mContext.startActivity(activity2Intent);
                     }
                 });
     }

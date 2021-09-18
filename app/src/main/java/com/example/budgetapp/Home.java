@@ -2,12 +2,16 @@ package com.example.budgetapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,7 +25,7 @@ public class Home extends AppCompatActivity {
     EditText mEditInternet;
     EditText mEditOther;
 
-    String mUid;
+    private Context mContext;
 
     private Double rent;
     private Double power;
@@ -46,10 +50,7 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            mUid = extras.getString("uid");
-        }
+        mContext = this;
 
         mButton = (Button)findViewById(R.id.button);
         mEditRent   = (EditText)findViewById(R.id.editRent);
@@ -60,8 +61,10 @@ public class Home extends AppCompatActivity {
         EditText[] fields = {mEditRent, mEditPower, mEditInternet, mEditOther};
         String[] details= {"rent", "hydro", "internet", "other"};
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference(mUid);
+        DatabaseReference myRef = database.getReference(user.getUid());
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -112,6 +115,9 @@ public class Home extends AppCompatActivity {
                         myRef.child("House").child("hydro").setValue(power);
                         myRef.child("House").child("internet").setValue(internet);
                         myRef.child("House").child("other").setValue(other);
+
+                        Intent activity2Intent = new Intent(mContext, CalendarPage.class);
+                        mContext.startActivity(activity2Intent);
                     }
                 });
     }
