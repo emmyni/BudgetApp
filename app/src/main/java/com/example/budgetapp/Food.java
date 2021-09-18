@@ -80,6 +80,9 @@ public class Food extends AppCompatActivity {
                 {
                     public void onClick(View view)
                     {
+                        grocery = 0.0;
+                        restaurant = 0.0;
+                        other = 0.0;
 
                         String strGrocery = mEditGrocery.getText().toString();
                         String strRestaurant = mEditRestaurant.getText().toString();
@@ -94,9 +97,10 @@ public class Food extends AppCompatActivity {
                         if (!"".equals(strOther)){
                             other = Double.parseDouble(strOther);
                         }
-                        Log.v("EditText grocery", "grocery " + getGrocery());
-                        Log.v("EditText restaurant", "restaurant " + getRestaurant());
-                        Log.v("EditText other", "other " + getOther());
+
+                        myRef.child("Grocery").child("grocery").setValue(grocery);
+                        myRef.child("Grocery").child("restaurant").setValue(restaurant);
+                        myRef.child("Grocery").child("other").setValue(other);
                     }
                 });
     }

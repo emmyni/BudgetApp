@@ -85,6 +85,10 @@ public class Entertainment extends AppCompatActivity {
                 {
                     public void onClick(View view)
                     {
+                        subscriptions = 0.0;
+                        shopping = 0.0;
+                        activities = 0.0;
+                        other = 0.0;
 
                         String strSubscriptions = mEditSubscriptions.getText().toString();
                         String strShopping = mEditShopping.getText().toString();
@@ -103,6 +107,12 @@ public class Entertainment extends AppCompatActivity {
                         if (!"".equals(strOther)){
                             other = Double.parseDouble(strOther);
                         }
+
+                        myRef.child("Entertainment").child("subscriptions").setValue(subscriptions);
+                        myRef.child("Entertainment").child("shopping").setValue(shopping);
+                        myRef.child("Entertainment").child("activities").setValue(activities);
+                        myRef.child("Entertainment").child("other").setValue(other);
+
                         Log.v("EditText subscriptions", "subscriptions " + getSubscriptions());
                         Log.v("EditText shopping", "shopping " + getShopping());
                         Log.v("EditText activities", "activities " + getActivities());

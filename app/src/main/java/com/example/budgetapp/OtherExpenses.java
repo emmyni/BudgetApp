@@ -67,6 +67,7 @@ public class OtherExpenses extends AppCompatActivity {
                         }
                     }
                 }
+
             }
 
             @Override

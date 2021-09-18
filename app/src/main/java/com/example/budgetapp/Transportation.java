@@ -86,6 +86,11 @@ public class Transportation extends AppCompatActivity {
                 {
                     public void onClick(View view)
                     {
+                        gas = 0.0;
+                        maintenance = 0.0;
+                        publicTransport = 0.0;
+                        other = 0.0;
+
                         String strGas = mEditGas.getText().toString();
                         String strMaintenance = mEditMaintenance.getText().toString();
                         String strPublicTransport = mEditPublicTransport.getText().toString();
@@ -103,6 +108,12 @@ public class Transportation extends AppCompatActivity {
                         if (!"".equals(strOther)){
                             other = Double.parseDouble(strOther);
                         }
+
+                        myRef.child("Transportation").child("gas").setValue(gas);
+                        myRef.child("Transportation").child("maintenance").setValue(maintenance);
+                        myRef.child("Transportation").child("publicTransport").setValue(publicTransport);
+                        myRef.child("Transportation").child("other").setValue(other);
+
                         Log.v("EditText gas", "gas " + getGas());
                         Log.v("EditText maintenance", "maintenance " + getMaintenance());
                         Log.v("EditText pTransport", "publicTransport " + getPublicTransport());

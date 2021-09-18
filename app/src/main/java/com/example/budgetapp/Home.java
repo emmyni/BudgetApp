@@ -85,6 +85,11 @@ public class Home extends AppCompatActivity {
                 {
                     public void onClick(View view)
                     {
+                        rent = 0.0;
+                        power = 0.0;
+                        internet = 0.0;
+                        other = 0.0;
+
                         String strRent = mEditRent.getText().toString();
                         String strPower = mEditPower.getText().toString();
                         String strInternet = mEditInternet.getText().toString();
@@ -102,10 +107,11 @@ public class Home extends AppCompatActivity {
                         if (!"".equals(strOther)){
                             other = Double.parseDouble(strOther);
                         }
-                        Log.v("EditText ", "rent " + getRent());
-                        Log.v("EditText ", "power " + getPower());
-                        Log.v("EditText ", "internet " + getInternet());
-                        Log.v("EditText other", "other " + getOther());
+
+                        myRef.child("House").child("rent").setValue(rent);
+                        myRef.child("House").child("hydro").setValue(power);
+                        myRef.child("House").child("internet").setValue(internet);
+                        myRef.child("House").child("other").setValue(other);
                     }
                 });
     }

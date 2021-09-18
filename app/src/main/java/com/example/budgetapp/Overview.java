@@ -63,7 +63,9 @@ public class Overview extends AppCompatActivity {
                 {"subscriptions", "shopping", "activities", "other"},
                 {"vacation", "emergencies", "savings"}
         };
-        String[][] detailsIncome = {{"income"}};
+        String[][] detailsIncome = {
+                {"salary", "investment", "other"}
+        };
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
