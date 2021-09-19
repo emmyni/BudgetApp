@@ -37,7 +37,6 @@ public class Overview extends AppCompatActivity {
         if (extras != null) {
             mUid = extras.getString("uid");
             mDate = extras.getString("date");
-            mDate  = mDate.substring(0, mDate.length() - 3);
 
             TextView title = (TextView) findViewById(R.id.title);
             title.setText(mDate);
@@ -71,12 +70,12 @@ public class Overview extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (int i = 0; i < typeExpense.length; i++) {
-                    if(dataSnapshot.child(typeExpense[i]).exists()) {
+                    if(dataSnapshot.child(mDate).child(typeExpense[i]).exists()) {
 //                        Log.d("values: ", dataSnapshot.getValue().toString());
 
                         for (int j=0; j < detailsExpenses[i].length; j++) {
-                            if(dataSnapshot.child(typeExpense[i]).child(detailsExpenses[i][j]).exists()) {
-                                valueExpense[i] += Double.parseDouble(dataSnapshot.child(typeExpense[i]).child(detailsExpenses[i][j]).getValue().toString());
+                            if(dataSnapshot.child(mDate).child(typeExpense[i]).child(detailsExpenses[i][j]).exists()) {
+                                valueExpense[i] += Double.parseDouble(dataSnapshot.child(mDate).child(typeExpense[i]).child(detailsExpenses[i][j]).getValue().toString());
                             }
                         }
                         Log.d("Success: ", valueExpense[i].toString());
@@ -84,10 +83,10 @@ public class Overview extends AppCompatActivity {
                 }
 
                 for (int i = 0; i < typeIncome.length; i++) {
-                    if(dataSnapshot.child(typeIncome[i]).exists()) {
+                    if(dataSnapshot.child(mDate).child(typeIncome[i]).exists()) {
                         for (int j=0; j < detailsIncome[i].length; j++) {
-                            if(dataSnapshot.child(typeIncome[i]).child(detailsIncome[i][j]).exists()) {
-                                valueIncome[i] += Double.parseDouble(dataSnapshot.child(typeIncome[i]).child(detailsIncome[i][j]).getValue().toString());
+                            if(dataSnapshot.child(mDate).child(typeIncome[i]).child(detailsIncome[i][j]).exists()) {
+                                valueIncome[i] += Double.parseDouble(dataSnapshot.child(mDate).child(typeIncome[i]).child(detailsIncome[i][j]).getValue().toString());
                             }
                         }
                         Log.d("Success: ", valueIncome[i].toString());

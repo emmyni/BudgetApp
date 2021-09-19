@@ -32,6 +32,8 @@ public class Home extends AppCompatActivity {
     private Double internet;
     private Double other;
 
+    private String mDate;
+
     public Double getRent() {
         return rent;
     }
@@ -58,6 +60,11 @@ public class Home extends AppCompatActivity {
         mEditInternet   = (EditText)findViewById(R.id.editInternet);
         mEditOther   = (EditText)findViewById(R.id.editOther);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            mDate = extras.getString("date");
+        }
+
         EditText[] fields = {mEditRent, mEditPower, mEditInternet, mEditOther};
         String[] details= {"rent", "hydro", "internet", "other"};
 
@@ -69,10 +76,10 @@ public class Home extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("House").exists()) {
+                if(dataSnapshot.child(mDate).child("House").exists()) {
                     for (int j=0; j < details.length; j++) {
-                        if(dataSnapshot.child("House").child(details[j]).exists()) {
-                            fields[j].setText(dataSnapshot.child("House").child(details[j]).getValue().toString());
+                        if(dataSnapshot.child(mDate).child("House").child(details[j]).exists()) {
+                            fields[j].setText(dataSnapshot.child(mDate).child("House").child(details[j]).getValue().toString());
                         }
                     }
                 }
@@ -111,10 +118,10 @@ public class Home extends AppCompatActivity {
                             other = Double.parseDouble(strOther);
                         }
 
-                        myRef.child("House").child("rent").setValue(rent);
-                        myRef.child("House").child("hydro").setValue(power);
-                        myRef.child("House").child("internet").setValue(internet);
-                        myRef.child("House").child("other").setValue(other);
+                        myRef.child(mDate).child("House").child("rent").setValue(rent);
+                        myRef.child(mDate).child("House").child("hydro").setValue(power);
+                        myRef.child(mDate).child("House").child("internet").setValue(internet);
+                        myRef.child(mDate).child("House").child("other").setValue(other);
 
                         Intent activity2Intent = new Intent(mContext, CalendarPage.class);
                         mContext.startActivity(activity2Intent);

@@ -33,6 +33,8 @@ public class Transportation extends AppCompatActivity {
     private Double publicTransport;
     private Double other;
 
+    private String mDate;
+
     public Double getGas() {
         return gas;
     }
@@ -59,6 +61,11 @@ public class Transportation extends AppCompatActivity {
         mEditPublicTransport   = (EditText)findViewById(R.id.editPublicTransport);
         mEditOther   = (EditText)findViewById(R.id.editOther);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            mDate = extras.getString("date");
+        }
+
         EditText[] fields = {mEditGas, mEditMaintenance, mEditPublicTransport, mEditOther};
         String[] details= {"gas", "maintenance", "publicTransport", "other"};
 
@@ -70,10 +77,10 @@ public class Transportation extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("Transportation").exists()) {
+                if(dataSnapshot.child(mDate).child("Transportation").exists()) {
                     for (int j=0; j < details.length; j++) {
-                        if(dataSnapshot.child("Transportation").child(details[j]).exists()) {
-                            fields[j].setText(dataSnapshot.child("Transportation").child(details[j]).getValue().toString());
+                        if(dataSnapshot.child(mDate).child("Transportation").child(details[j]).exists()) {
+                            fields[j].setText(dataSnapshot.child(mDate).child("Transportation").child(details[j]).getValue().toString());
                         }
                     }
                 }
@@ -112,10 +119,10 @@ public class Transportation extends AppCompatActivity {
                             other = Double.parseDouble(strOther);
                         }
 
-                        myRef.child("Transportation").child("gas").setValue(gas);
-                        myRef.child("Transportation").child("maintenance").setValue(maintenance);
-                        myRef.child("Transportation").child("publicTransport").setValue(publicTransport);
-                        myRef.child("Transportation").child("other").setValue(other);
+                        myRef.child(mDate).child("Transportation").child("gas").setValue(gas);
+                        myRef.child(mDate).child("Transportation").child("maintenance").setValue(maintenance);
+                        myRef.child(mDate).child("Transportation").child("publicTransport").setValue(publicTransport);
+                        myRef.child(mDate).child("Transportation").child("other").setValue(other);
 
                         Log.v("EditText gas", "gas " + getGas());
                         Log.v("EditText maintenance", "maintenance " + getMaintenance());

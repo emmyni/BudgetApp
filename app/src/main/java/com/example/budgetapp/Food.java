@@ -31,6 +31,8 @@ public class Food extends AppCompatActivity {
     private Double restaurant;
     private Double other;
 
+    private String mDate;
+
     public Double getGrocery() {
         return grocery;
     }
@@ -45,6 +47,11 @@ public class Food extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            mDate = extras.getString("date");
+        }
 
         mContext = this;
 
@@ -64,10 +71,10 @@ public class Food extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("Grocery").exists()) {
+                if(dataSnapshot.child(mDate).child("Grocery").exists()) {
                     for (int j=0; j < details.length; j++) {
-                        if(dataSnapshot.child("Grocery").child(details[j]).exists()) {
-                            fields[j].setText(dataSnapshot.child("Grocery").child(details[j]).getValue().toString());
+                        if(dataSnapshot.child(mDate).child("Grocery").child(details[j]).exists()) {
+                            fields[j].setText(dataSnapshot.child(mDate).child("Grocery").child(details[j]).getValue().toString());
                         }
                     }
                 }
@@ -101,9 +108,9 @@ public class Food extends AppCompatActivity {
                             other = Double.parseDouble(strOther);
                         }
 
-                        myRef.child("Grocery").child("grocery").setValue(grocery);
-                        myRef.child("Grocery").child("restaurant").setValue(restaurant);
-                        myRef.child("Grocery").child("other").setValue(other);
+                        myRef.child(mDate).child("Grocery").child("grocery").setValue(grocery);
+                        myRef.child(mDate).child("Grocery").child("restaurant").setValue(restaurant);
+                        myRef.child(mDate).child("Grocery").child("other").setValue(other);
 
                         Intent activity2Intent = new Intent(mContext, CalendarPage.class);
                         mContext.startActivity(activity2Intent);

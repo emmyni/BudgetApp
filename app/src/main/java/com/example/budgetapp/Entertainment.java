@@ -32,6 +32,8 @@ public class Entertainment extends AppCompatActivity {
     private Double activities;
     private Double other;
 
+    private String mDate;
+
     public Double getSubscriptions() {
         return subscriptions;
     }
@@ -52,6 +54,11 @@ public class Entertainment extends AppCompatActivity {
 
         mContext = this;
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            mDate = extras.getString("date");
+        }
+
         mButton = (Button)findViewById(R.id.button);
         mEditSubscriptions   = (EditText)findViewById(R.id.editSubscriptions);
         mEditShopping   = (EditText)findViewById(R.id.editShopping);
@@ -69,10 +76,10 @@ public class Entertainment extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("Entertainment").exists()) {
+                if(dataSnapshot.child(mDate).child("Entertainment").exists()) {
                     for (int j=0; j < details.length; j++) {
-                        if(dataSnapshot.child("Entertainment").child(details[j]).exists()) {
-                            fields[j].setText(dataSnapshot.child("Entertainment").child(details[j]).getValue().toString());
+                        if(dataSnapshot.child(mDate).child("Entertainment").child(details[j]).exists()) {
+                            fields[j].setText(dataSnapshot.child(mDate).child("Entertainment").child(details[j]).getValue().toString());
                         }
                     }
                 }
@@ -111,10 +118,10 @@ public class Entertainment extends AppCompatActivity {
                             other = Double.parseDouble(strOther);
                         }
 
-                        myRef.child("Entertainment").child("subscriptions").setValue(subscriptions);
-                        myRef.child("Entertainment").child("shopping").setValue(shopping);
-                        myRef.child("Entertainment").child("activities").setValue(activities);
-                        myRef.child("Entertainment").child("other").setValue(other);
+                        myRef.child(mDate).child("Entertainment").child("subscriptions").setValue(subscriptions);
+                        myRef.child(mDate).child("Entertainment").child("shopping").setValue(shopping);
+                        myRef.child(mDate).child("Entertainment").child("activities").setValue(activities);
+                        myRef.child(mDate).child("Entertainment").child("other").setValue(other);
 
                         Log.v("EditText subscriptions", "subscriptions " + getSubscriptions());
                         Log.v("EditText shopping", "shopping " + getShopping());

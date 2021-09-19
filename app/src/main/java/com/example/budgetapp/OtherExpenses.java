@@ -30,6 +30,8 @@ public class OtherExpenses extends AppCompatActivity {
     private Double emergency;
     private Double savings;
 
+    private String mDate;
+
     public Double getVacation() {
         return vacation;
     }
@@ -52,6 +54,11 @@ public class OtherExpenses extends AppCompatActivity {
         mEditEmergency   = (EditText)findViewById(R.id.editEmergency);
         mEditSavings   = (EditText)findViewById(R.id.editSavings);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            mDate = extras.getString("date");
+        }
+
         EditText[] fields = {mEditVacation, mEditEmergency, mEditSavings};
         String[] details= {"vacation", "emergencies", "savings"};
 
@@ -63,10 +70,10 @@ public class OtherExpenses extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("Other").exists()) {
+                if(dataSnapshot.child(mDate).child("Other").exists()) {
                     for (int j=0; j < details.length; j++) {
-                        if(dataSnapshot.child("Other").child(details[j]).exists()) {
-                            fields[j].setText(dataSnapshot.child("Other").child(details[j]).getValue().toString());
+                        if(dataSnapshot.child(mDate).child("Other").child(details[j]).exists()) {
+                            fields[j].setText(dataSnapshot.child(mDate).child("Other").child(details[j]).getValue().toString());
                         }
                     }
                 }
@@ -97,9 +104,10 @@ public class OtherExpenses extends AppCompatActivity {
                         if (!"".equals(strSavings)){
                             savings = Double.parseDouble(strSavings);
                         }
-                        Log.v("EditText grocery", "grocery " + getVacation());
-                        Log.v("EditText restaurant", "restaurant " + getEmergency());
-                        Log.v("EditText other", "other " + getSavings());
+
+                        myRef.child(mDate).child("Other").child("vacation").setValue(vacation);
+                        myRef.child(mDate).child("Other").child("emergency").setValue(emergency);
+                        myRef.child(mDate).child("Other").child("savings").setValue(savings);
 
                         Intent activity2Intent = new Intent(mContext, CalendarPage.class);
                         mContext.startActivity(activity2Intent);

@@ -31,6 +31,8 @@ public class Income extends AppCompatActivity {
     private Double investment;
     private Double other;
 
+    private String mDate;
+
     public Double getSalary() {
         return salary;
     }
@@ -47,6 +49,10 @@ public class Income extends AppCompatActivity {
         setContentView(R.layout.activity_income);
 
         mContext = this;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            mDate = extras.getString("date");
+        }
 
         mButton = (Button)findViewById(R.id.button);
         mEditSalary   = (EditText)findViewById(R.id.editSalary);
@@ -64,10 +70,10 @@ public class Income extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("Income").exists()) {
+                if(dataSnapshot.child(mDate).child("Income").exists()) {
                     for (int j=0; j < details.length; j++) {
-                        if(dataSnapshot.child("Income").child(details[j]).exists()) {
-                            fields[j].setText(dataSnapshot.child("Income").child(details[j]).getValue().toString());
+                        if(dataSnapshot.child(mDate).child("Income").child(details[j]).exists()) {
+                            fields[j].setText(dataSnapshot.child(mDate).child("Income").child(details[j]).getValue().toString());
                         }
                     }
                 }
@@ -101,9 +107,9 @@ public class Income extends AppCompatActivity {
                             other = Double.parseDouble(strOther);
                         }
 
-                        myRef.child("Income").child("salary").setValue(salary);
-                        myRef.child("Income").child("investment").setValue(investment);
-                        myRef.child("Income").child("other").setValue(other);
+                        myRef.child(mDate).child("Income").child("salary").setValue(salary);
+                        myRef.child(mDate).child("Income").child("investment").setValue(investment);
+                        myRef.child(mDate).child("Income").child("other").setValue(other);
 
                         Log.v("EditText ", "salary " + getSalary());
                         Log.v("EditText ", "investment " + getInvestment());
