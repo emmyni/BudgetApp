@@ -129,7 +129,8 @@ public class Transportation extends AppCompatActivity {
                         Log.v("EditText pTransport", "publicTransport " + getPublicTransport());
                         Log.v("EditText other", "other " + getOther());
 
-                        Intent activity2Intent = new Intent(mContext, CalendarPage.class);
+                        Intent activity2Intent = new Intent(mContext, Overview.class);
+                        activity2Intent.putExtra("date", mDate);
                         mContext.startActivity(activity2Intent);
                     }
                 });

@@ -123,7 +123,8 @@ public class Home extends AppCompatActivity {
                         myRef.child(mDate).child("House").child("internet").setValue(internet);
                         myRef.child(mDate).child("House").child("other").setValue(other);
 
-                        Intent activity2Intent = new Intent(mContext, CalendarPage.class);
+                        Intent activity2Intent = new Intent(mContext, Overview.class);
+                        activity2Intent.putExtra("date", mDate);
                         mContext.startActivity(activity2Intent);
                     }
                 });

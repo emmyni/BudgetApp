@@ -23,7 +23,6 @@ public class Overview extends AppCompatActivity {
     ArrayList<Plan> expenses;
     ArrayList<Plan> income;
 
-    String mUid;
     String mDate;
 
     private Context mContext;
@@ -35,11 +34,11 @@ public class Overview extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            mUid = extras.getString("uid");
             mDate = extras.getString("date");
 
             TextView title = (TextView) findViewById(R.id.title);
             title.setText(mDate);
+            Log.i("current date: ", mDate);
         }
 
         mContext = this;
@@ -66,7 +65,7 @@ public class Overview extends AppCompatActivity {
                 {"salary", "investment", "other"}
         };
 
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (int i = 0; i < typeExpense.length; i++) {

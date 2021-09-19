@@ -112,7 +112,8 @@ public class Food extends AppCompatActivity {
                         myRef.child(mDate).child("Grocery").child("restaurant").setValue(restaurant);
                         myRef.child(mDate).child("Grocery").child("other").setValue(other);
 
-                        Intent activity2Intent = new Intent(mContext, CalendarPage.class);
+                        Intent activity2Intent = new Intent(mContext, Overview.class);
+                        activity2Intent.putExtra("date", mDate);
                         mContext.startActivity(activity2Intent);
                     }
                 });

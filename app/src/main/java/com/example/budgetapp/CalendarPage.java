@@ -34,6 +34,29 @@ public class CalendarPage extends AppCompatActivity {
 
     String mUid;
     String mCurDate;
+    String mSelected = "";
+
+    final Double[] valueExpense = {0.00};
+    final Double[] valueIncome = {0.00};
+
+    String[] typeExpense = {"Grocery", "House", "Transportation", "Entertainment", "Other"};
+    String[] typeIncome = {"Income"};
+
+    String[][] detailsExpenses = {
+            {"grocery", "restaurant", "other"},
+            {"rent", "hydro", "internet", "other"},
+            {"gas", "maintenance", "publicTransport", "other"},
+            {"subscriptions", "shopping", "activities", "other"},
+            {"vacation", "emergencies", "savings"}
+    };
+    String[][] detailsIncome = {
+            {"salary", "investment", "other"}
+    };
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference(user.getUid());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +79,7 @@ public class CalendarPage extends AppCompatActivity {
                 System.out.println("Button Clicked");
 
                 Intent intent = new Intent(mContext, Overview.class);
-                intent.putExtra("uid", mUid);
                 intent.putExtra("date", mCurDate);
-
                 mContext.startActivity(intent);
             }
 
@@ -70,48 +91,41 @@ public class CalendarPage extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         mCurDate = sdf.format(date.getTime());
+        mCurDate  = mCurDate.substring(0, mCurDate.lastIndexOf("-"));
+
+        if (mSelected.equals("")) {
+            Log.d("initialize: ", mSelected);
+            mSelected = mCurDate;
+        }
 
         CalendarView.OnDateChangeListener myCalendarListener = new CalendarView.OnDateChangeListener(){
 
             public void onSelectedDayChange(CalendarView view, int year, int month, int day){
 
-                // add one because month starts at 0
+//                // add one because month starts at 0
                 month = month + 1;
-                // output to log cat **not sure how to format year to two places here**
-                String newDate = year+"-"+month+"-"+day;
-                newDate  = newDate.substring(0, newDate.length() - 3);
+                mCurDate = year+"-"+ month;
+                if (month < 10) {
+                    mCurDate = year+"-0"+ month;
+                }
 
-                if (newDate != mCurDate) {
-                    mCurDate = newDate;
+                if (!mSelected.equals(mCurDate)) {
+                    Log.d("old: ", mSelected);
+                    Log.d("new: ", mCurDate);
+                    mSelected = mCurDate;
+                    valueExpense[0] = 0.00;
+                    valueIncome[0] = 0.00;
+                    getData();
                 }
             }
         };
 
         myCalendar.setOnDateChangeListener(myCalendarListener);
+        getData();
+    }
 
-        final Double[] valueExpense = {0.00};
-        final Double[] valueIncome = {0.00};
-
-        String[] typeExpense = {"Grocery", "House", "Transportation", "Entertainment", "Other"};
-        String[] typeIncome = {"Income"};
-
-        String[][] detailsExpenses = {
-                {"grocery", "restaurant", "other"},
-                {"rent", "hydro", "internet", "other"},
-                {"gas", "maintenance", "publicTransport", "other"},
-                {"subscriptions", "shopping", "activities", "other"},
-                {"vacation", "emergencies", "savings"}
-        };
-        String[][] detailsIncome = {
-                {"salary", "investment", "other"}
-        };
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference(user.getUid());
-
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void getData() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(mCurDate).exists()) {
