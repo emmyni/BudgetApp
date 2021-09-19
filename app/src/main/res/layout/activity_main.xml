@@ -33,7 +33,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="604dp"
         android:background="@drawable/btn_start"
-        android:fontFamily="@fonts/roboto_regular"
+        android:fontFamily="@font/roboto_regular"
         android:text="Start"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"

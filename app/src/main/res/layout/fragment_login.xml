@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="@string/login"
         android:textSize="50sp"
-        android:fontFamily="@fonts/indigo_daisy"
+        android:fontFamily="@font/indigo_daisy"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginBottom="10dp"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="@string/tag"
         android:textSize="17sp"
-        android:fontFamily="@fonts/roboto_regular"
+        android:fontFamily="@font/roboto_regular"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginBottom="50dp"
@@ -38,7 +38,7 @@
         android:layout_marginRight="20dp"
         android:padding="15dp"
         android:inputType="textEmailAddress"
-        android:fontFamily="@fonts/roboto_regular"
+        android:fontFamily="@font/roboto_regular"
         android:layout_above="@id/et_password"
         android:background="@drawable/et_custom"
         android:textSize="15sp" />
@@ -52,7 +52,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:padding="15dp"
-        android:fontFamily="@fonts/roboto_regular"
+        android:fontFamily="@font/roboto_regular"
         android:inputType="textPassword"
         android:layout_centerInParent="true"
         android:background="@drawable/et_custom"
@@ -67,7 +67,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="15dp"
-        android:fontFamily="@fonts/roboto_regular"
+        android:fontFamily="@font/roboto_regular"
         android:textColor="@android:color/white"
         android:text="@string/login"/>
 
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:text="@string/swipe_left_for_register"
         android:textSize="15sp"
-        android:fontFamily="@fonts/roboto_regular"
+        android:fontFamily="@font/roboto_regular"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"/>
