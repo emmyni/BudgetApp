@@ -28,11 +28,13 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="0dp"
             android:layout_marginLeft="16dp"
             android:text="Calendar"
+            android:fontFamily="@font/indigo_daisy"
             android:textAlignment="center"
-            android:textSize="25dp"
+            android:textSize="35dp"
             app:layout_constraintStart_toStartOf="parent" />
 
         <CalendarView
@@ -43,7 +45,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/textViewPlan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

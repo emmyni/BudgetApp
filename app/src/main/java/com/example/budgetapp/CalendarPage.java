@@ -29,12 +29,15 @@ public class CalendarPage extends AppCompatActivity {
     Context mContext;
     TextView incomeText;
     TextView expensesText;
+    TextView dateText;
 
     CalendarView myCalendar;
 
     String mUid;
     String mCurDate;
     String mSelected = "";
+
+    String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
     final Double[] valueExpense = {0.00};
     final Double[] valueIncome = {0.00};
@@ -65,6 +68,7 @@ public class CalendarPage extends AppCompatActivity {
 
         incomeText = (TextView)findViewById(R.id.textViewIncome);
         expensesText = (TextView)findViewById(R.id.textViewExpenses);
+        dateText = (TextView)findViewById(R.id.textViewPlan);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -93,6 +97,11 @@ public class CalendarPage extends AppCompatActivity {
         mCurDate = sdf.format(date.getTime());
         mCurDate  = mCurDate.substring(0, mCurDate.lastIndexOf("-"));
 
+        String year = mCurDate.substring(0, mCurDate.lastIndexOf("-"));
+        String month = months[Integer.parseInt(mCurDate.substring(mCurDate.lastIndexOf("-")+1))-1];
+
+        dateText.setText("Plan for " + month + " " + year);
+
         if (mSelected.equals("")) {
             Log.d("initialize: ", mSelected);
             mSelected = mCurDate;
@@ -102,7 +111,7 @@ public class CalendarPage extends AppCompatActivity {
 
             public void onSelectedDayChange(CalendarView view, int year, int month, int day){
 
-//                // add one because month starts at 0
+                // add one because month starts at 0
                 month = month + 1;
                 mCurDate = year+"-"+ month;
                 if (month < 10) {
@@ -110,9 +119,8 @@ public class CalendarPage extends AppCompatActivity {
                 }
 
                 if (!mSelected.equals(mCurDate)) {
-                    Log.d("old: ", mSelected);
-                    Log.d("new: ", mCurDate);
                     mSelected = mCurDate;
+                    dateText.setText("Plan for " + months[month-1] + " " + year);
                     valueExpense[0] = 0.00;
                     valueIncome[0] = 0.00;
                     getData();

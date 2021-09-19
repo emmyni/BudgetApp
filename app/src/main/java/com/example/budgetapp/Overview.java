@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Overview extends AppCompatActivity {
     ArrayList<Plan> expenses;
@@ -26,6 +27,8 @@ public class Overview extends AppCompatActivity {
     String mDate;
 
     private Context mContext;
+
+    String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +39,11 @@ public class Overview extends AppCompatActivity {
         if (extras != null) {
             mDate = extras.getString("date");
 
+            String year = mDate.substring(0, mDate.lastIndexOf("-"));
+            String month = months[Integer.parseInt(mDate.substring(mDate.lastIndexOf("-")+1))];
+
             TextView title = (TextView) findViewById(R.id.title);
-            title.setText(mDate);
+            title.setText(month + " " + year);
             Log.i("current date: ", mDate);
         }
 
