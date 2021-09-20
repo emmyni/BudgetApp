@@ -19,6 +19,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textStyle="bold"
                 />
             <Button
                 android:id="@+id/message_button"
@@ -27,6 +28,8 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:textSize="10sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/colorBlue"
                 />
         </TableRow>
 
