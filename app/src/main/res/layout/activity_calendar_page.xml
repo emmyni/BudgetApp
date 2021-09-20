@@ -34,7 +34,8 @@
             android:text="Calendar"
             android:fontFamily="@font/indigo_daisy"
             android:textAlignment="center"
-            android:textSize="35dp"
+            android:textColor="@color/colorBlue"
+            android:textSize="45dp"
             app:layout_constraintStart_toStartOf="parent" />
 
         <CalendarView
@@ -53,6 +54,8 @@
             android:layout_marginBottom="16dp"
             android:text="Current Plan"
             android:textSize="20dp"
+            android:textColor="@color/colorBlue"
+            android:fontFamily="@font/roboto_regular"
             app:layout_constraintStart_toStartOf="parent" />
         <TableLayout
             android:layout_width="match_parent"
@@ -71,6 +74,12 @@
                     android:layout_marginBottom="16dp"
                     android:text="Income"
                     app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:id="@+id/textViewDollar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="$" />
                 <TextView
                     android:id="@+id/textViewIncome"
                     android:layout_width="wrap_content"
@@ -95,6 +104,12 @@
                     android:layout_marginBottom="16dp"
                     android:text="Expenses"
                     app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:id="@+id/textView1Dollar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="$" />
                 <TextView
                     android:id="@+id/textViewExpenses"
                     android:layout_width="wrap_content"

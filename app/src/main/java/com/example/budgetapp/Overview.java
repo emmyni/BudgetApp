@@ -40,7 +40,7 @@ public class Overview extends AppCompatActivity {
             mDate = extras.getString("date");
 
             String year = mDate.substring(0, mDate.lastIndexOf("-"));
-            String month = months[Integer.parseInt(mDate.substring(mDate.lastIndexOf("-")+1))];
+            String month = months[Integer.parseInt(mDate.substring(mDate.lastIndexOf("-")+1))-1];
 
             TextView title = (TextView) findViewById(R.id.title);
             title.setText(month + " " + year);
