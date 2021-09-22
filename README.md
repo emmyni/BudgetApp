@@ -2,4 +2,4 @@
  
 A simple app to record your earnings and spendings each month.
 
-To try it, download the contents of app-debug.apk.
+To try it, download the contents of app-debug.apk and run inside an android simulator.
