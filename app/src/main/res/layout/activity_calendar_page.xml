@@ -32,9 +32,9 @@
             android:layout_marginStart="0dp"
             android:layout_marginLeft="16dp"
             android:text="Calendar"
-            android:fontFamily="@font/indigo_daisy"
+            android:fontFamily="@font/cabal"
             android:textAlignment="center"
-            android:textColor="@color/colorBlue"
+            android:textColor="@color/colorDark"
             android:textSize="45dp"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -47,15 +47,15 @@
 
         <TextView
             android:id="@+id/textViewPlan"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Current Plan"
-            android:textSize="20dp"
-            android:textColor="@color/colorBlue"
             android:fontFamily="@font/roboto_regular"
+            android:text="Current Plan"
+            android:textColor="@color/colorBlue"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent" />
         <TableLayout
             android:layout_width="match_parent"

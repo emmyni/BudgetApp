@@ -9,18 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GraphSummary"></activity>
-        <activity android:name=".Start" />
-        <activity android:name=".Income" />
-        <activity android:name=".Overview" />
-        <activity android:name=".OtherExpenses" />
-        <activity android:name=".Entertainment" />
-        <activity android:name=".Transportation" />
-        <activity android:name=".Home" />
-        <activity android:name=".CalendarPage" />
-        <activity android:name=".Plan" />
-        <activity android:name=".Food" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".GraphSummary" android:exported="false" />
+        <activity android:name=".Start" android:exported="true"/>
+        <activity android:name=".Income" android:exported="false"/>
+        <activity android:name=".Overview" android:exported="false"/>
+        <activity android:name=".OtherExpenses" android:exported="false"/>
+        <activity android:name=".Entertainment" android:exported="false"/>
+        <activity android:name=".Transportation" android:exported="false"/>
+        <activity android:name=".Home" android:exported="false"/>
+        <activity android:name=".CalendarPage" android:exported="false"/>
+        <activity android:name=".Plan" android:exported="false"/>
+        <activity android:name=".Food" android:exported="false"/>
+        <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
