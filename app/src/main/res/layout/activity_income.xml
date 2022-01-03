@@ -19,98 +19,78 @@
             android:layout_height="wrap_content"
             android:text="Income"
             android:textSize="35sp"
-            android:fontFamily="@font/indigo_daisy"
+            android:fontFamily="@font/cabal"
             android:textColor="@color/colorBlue"
             android:textAlignment="center"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"/>
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TableRow
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textField1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:hint="Job Salary"
+                app:endIconMode="clear_text"
+                app:prefixText="$">
 
-                <TextView
-                    android:id="@+id/textView"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editSalary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Job Salary" />
-                <TextView
-                    android:id="@+id/textViewDollar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="$" />
-                <EditText
-                    android:id="@+id/editSalary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="numberDecimal" />
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                    android:inputType="numberDecimal"
+                    />
 
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Investments" />
-                <TextView
-                    android:id="@+id/textView1Dollar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="$" />
-                <EditText
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textField2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Investments"
+                app:endIconMode="clear_text"
+                android:layout_marginBottom="15dp"
+                app:prefixText="$">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editInvestments"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="numberDecimal" />
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                    android:inputType="numberDecimal"
+                    />
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Other" />
-                <TextView
-                    android:id="@+id/textView3Dollar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="$" />
-                <EditText
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textField3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Other"
+                app:endIconMode="clear_text"
+                app:prefixText="$">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editOther"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="numberDecimal" />
-            </TableRow>
+                    android:inputType="numberDecimal"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_start"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/roboto_regular"
                 android:textColor="@android:color/white"
                 android:text="@string/submit"/>
-        </TableLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
