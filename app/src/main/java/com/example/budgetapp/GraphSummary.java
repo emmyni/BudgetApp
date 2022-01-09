@@ -1,9 +1,13 @@
 package com.example.budgetapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -12,21 +16,37 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class GraphSummary extends AppCompatActivity {
+public class GraphSummary extends Fragment {
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_graph_summary);
-        drawChart();
+    public GraphSummary() {
+        // Required empty public constructor
     }
 
-    private void drawChart() {
-        PieChart pieChart = findViewById(R.id.pieChart);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_graph_summary, container, false);
+//        setContentView(R.layout.activity_graph_summary);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference(user.getUid());
+
+        drawChart(view);
+        return view;
+    }
+
+    private void drawChart(View view) {
+        PieChart pieChart = view.findViewById(R.id.pieChart);
         pieChart.setUsePercentValues(true);
 
         ArrayList<PieEntry> yvalues = new ArrayList<PieEntry>();
