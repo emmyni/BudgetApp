@@ -30,9 +30,19 @@
                 android:textSize="45dp"
                 android:textColor="@color/colorBlue"
                 android:fontFamily="@font/indigo_daisy"
-                app:layout_constraintBottom_toTopOf="@+id/textView5"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_container_view"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.fragment.app.FragmentContainerView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/fragment_container_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:name="com.example.budgetapp.GraphSummary"
+                app:layout_constraintBottom_toTopOf="@+id/textView5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title"/>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardIncome"
@@ -53,7 +63,7 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/rvIncome"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title" />
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_container_view" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvIncome"
@@ -98,7 +108,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvExpenses"
-                android:layout_width="383dp"
+                android:layout_width="381dp"
                 android:layout_height="497dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
