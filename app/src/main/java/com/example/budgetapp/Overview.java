@@ -1,6 +1,7 @@
 package com.example.budgetapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Overview extends AppCompatActivity {
     ArrayList<Plan> expenses;
@@ -83,7 +83,6 @@ public class Overview extends AppCompatActivity {
                                 valueExpense[i] += Double.parseDouble(dataSnapshot.child(mDate).child(typeExpense[i]).child(detailsExpenses[i][j]).getValue().toString());
                             }
                         }
-                        Log.d("Success: ", valueExpense[i].toString());
                     }
                 }
 
@@ -94,7 +93,6 @@ public class Overview extends AppCompatActivity {
                                 valueIncome[i] += Double.parseDouble(dataSnapshot.child(mDate).child(typeIncome[i]).child(detailsIncome[i][j]).getValue().toString());
                             }
                         }
-                        Log.d("Success: ", valueIncome[i].toString());
                     }
                 }
 
@@ -127,5 +125,17 @@ public class Overview extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+        FragmentManager fm = getSupportFragmentManager();
+
+        Bundle bundle = new Bundle();
+
+        bundle.putStringArray("typeExpense", typeExpense);
+        bundle.putStringArray("typeIncome", typeIncome);
+        GraphSummary fragInfo = new GraphSummary();
+        fragInfo.setArguments(bundle);
+        fm.beginTransaction()
+                .replace(R.id.fragment_container_view, fragInfo)
+                .commit();
     }
 }

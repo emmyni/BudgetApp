@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,10 +37,14 @@ public class GraphSummary extends Fragment {
         View view = inflater.inflate(R.layout.fragment_graph_summary, container, false);
 //        setContentView(R.layout.activity_graph_summary);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Log.d("Prev", "hello");
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference(user.getUid());
+        if (getArguments() != null) {
+            String[] strtext = getArguments().getStringArray("typeExpense");
+            for (int i = 0; i < strtext.length; i++) {
+                Log.d("Curr----------------", strtext[i]);
+            }
+        }
 
         drawChart(view);
         return view;
