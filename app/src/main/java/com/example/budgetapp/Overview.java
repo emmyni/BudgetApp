@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Overview extends AppCompatActivity {
     ArrayList<Plan> expenses;
@@ -57,6 +58,9 @@ public class Overview extends AppCompatActivity {
         Double[] valueExpense = {0.00, 0.00, 0.00, 0.00, 0.00};
         Double[] valueIncome = {0.00};
 
+        String[] expenseStr = {"0.00", "0.00", "0.00", "0.00", "0.00"};
+        String[] incomeStr = {"0.00"};
+
         String[] typeExpense = {"Grocery", "House", "Transportation", "Entertainment", "Other"};
         String[] typeIncome = {"Income"};
 
@@ -80,9 +84,11 @@ public class Overview extends AppCompatActivity {
 
                         for (int j=0; j < detailsExpenses[i].length; j++) {
                             if(dataSnapshot.child(mDate).child(typeExpense[i]).child(detailsExpenses[i][j]).exists()) {
-                                valueExpense[i] += Double.parseDouble(dataSnapshot.child(mDate).child(typeExpense[i]).child(detailsExpenses[i][j]).getValue().toString());
+                                String exp = dataSnapshot.child(mDate).child(typeExpense[i]).child(detailsExpenses[i][j]).getValue().toString();
+                                valueExpense[i] += Double.parseDouble(exp);
                             }
                         }
+                        expenseStr[i] = valueExpense[i].toString();
                     }
                 }
 
@@ -90,9 +96,11 @@ public class Overview extends AppCompatActivity {
                     if(dataSnapshot.child(mDate).child(typeIncome[i]).exists()) {
                         for (int j=0; j < detailsIncome[i].length; j++) {
                             if(dataSnapshot.child(mDate).child(typeIncome[i]).child(detailsIncome[i][j]).exists()) {
-                                valueIncome[i] += Double.parseDouble(dataSnapshot.child(mDate).child(typeIncome[i]).child(detailsIncome[i][j]).getValue().toString());
+                                String inc = dataSnapshot.child(mDate).child(typeIncome[i]).child(detailsIncome[i][j]).getValue().toString();
+                                valueIncome[i] += Double.parseDouble(inc);
                             }
                         }
+                        incomeStr[i] = valueIncome[i].toString();
                     }
                 }
 
@@ -119,23 +127,24 @@ public class Overview extends AppCompatActivity {
                 rvExpenses.setAdapter(adapterExpenses);
                 // Set layout manager to position the items
                 rvExpenses.setLayoutManager(new LinearLayoutManager(mContext));
+
+                FragmentManager fm = getSupportFragmentManager();
+
+                Bundle bundle = new Bundle();
+                bundle.putStringArray("valueExpense", expenseStr);
+                bundle.putStringArray("valueIncome", incomeStr);
+                bundle.putStringArray("typeExpense", typeExpense);
+                bundle.putStringArray("typeIncome", typeIncome);
+                GraphSummary fragInfo = new GraphSummary();
+                fragInfo.setArguments(bundle);
+                fm.beginTransaction()
+                        .replace(R.id.fragment_container_view, fragInfo)
+                        .commit();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
-        FragmentManager fm = getSupportFragmentManager();
-
-        Bundle bundle = new Bundle();
-
-        bundle.putStringArray("typeExpense", typeExpense);
-        bundle.putStringArray("typeIncome", typeIncome);
-        GraphSummary fragInfo = new GraphSummary();
-        fragInfo.setArguments(bundle);
-        fm.beginTransaction()
-                .replace(R.id.fragment_container_view, fragInfo)
-                .commit();
     }
 }

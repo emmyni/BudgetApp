@@ -40,7 +40,7 @@ public class GraphSummary extends Fragment {
         Log.d("Prev", "hello");
 
         if (getArguments() != null) {
-            String[] strtext = getArguments().getStringArray("typeExpense");
+            String[] strtext = getArguments().getStringArray("valueExpense");
             for (int i = 0; i < strtext.length; i++) {
                 Log.d("Curr----------------", strtext[i]);
             }
