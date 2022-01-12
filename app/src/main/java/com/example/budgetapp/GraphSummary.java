@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.PieData;
@@ -17,10 +18,6 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -37,45 +34,52 @@ public class GraphSummary extends Fragment {
         View view = inflater.inflate(R.layout.fragment_graph_summary, container, false);
 //        setContentView(R.layout.activity_graph_summary);
 
-        Log.d("Prev", "hello");
 
         if (getArguments() != null) {
-            String[] strtext = getArguments().getStringArray("valueExpense");
-            for (int i = 0; i < strtext.length; i++) {
-                Log.d("Curr----------------", strtext[i]);
+            String[] valueExpense = getArguments().getStringArray("valueExpense");
+            String[] valueIncome = getArguments().getStringArray("valueIncome");
+            String[] typeExpense = getArguments().getStringArray("typeExpense");
+            String[] typeIncome = getArguments().getStringArray("typeIncome");
+
+            ArrayList<PieEntry> yvalues = new ArrayList<PieEntry>();
+            for (int i = 0; i < valueExpense.length; i++) {
+                Log.d("Curr----------------", valueExpense[i]);
+                yvalues.add(new PieEntry(Float.parseFloat(valueExpense[i]), typeExpense[i], i));
             }
+
+            for (int i = 0; i < valueIncome.length; i++) {
+                Log.d("Curr----------------", valueIncome[i]);
+            }
+            drawChart(view, yvalues);
         }
 
-        drawChart(view);
         return view;
     }
 
-    private void drawChart(View view) {
+    private void drawChart(View view, ArrayList<PieEntry> yvalues) {
         PieChart pieChart = view.findViewById(R.id.pieChart);
         pieChart.setUsePercentValues(true);
 
-        ArrayList<PieEntry> yvalues = new ArrayList<PieEntry>();
-        yvalues.add(new PieEntry(8f, "January", 0));
-        yvalues.add(new PieEntry(15f, "February", 1));
-        yvalues.add(new PieEntry(12f, "March", 2));
-        yvalues.add(new PieEntry(25f, "April", 3));
-        yvalues.add(new PieEntry(23f, "May", 4));
-        yvalues.add(new PieEntry(17f, "June", 5));
-
-        PieDataSet dataSet = new PieDataSet(yvalues, "Election");
+        PieDataSet dataSet = new PieDataSet(yvalues, "Expenses");
         PieData data = new PieData(dataSet);
 
-        data.setValueFormatter(new PercentFormatter());
+//        data.setValueFormatter(new PercentFormatter());
         pieChart.setData(data);
-        Description description = new Description();
-        description.setText("pie chart");
-        pieChart.setDescription(description);
+        pieChart.setUsePercentValues(false);
+        pieChart.getDescription().setEnabled(false);
         pieChart.setDrawHoleEnabled(true);
-        pieChart.setTransparentCircleRadius(58f);
+        pieChart.setTransparentCircleRadius(55f);
         pieChart.setHoleRadius(58f);
         dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
         data.setValueTextSize(13f);
         data.setValueTextColor(Color.DKGRAY);
-    }
+        pieChart.setHoleColor(Color.TRANSPARENT);
+        pieChart.setEntryLabelColor(Color.BLACK);
+        pieChart.setRotationEnabled(true);
+        pieChart.setDragDecelerationFrictionCoef(0.9f);
+        pieChart.setRotationAngle(0);
+        pieChart.animateY(1400, Easing.EaseInOutQuad);
 
+        pieChart.setHighlightPerTapEnabled(true);
+    }
 }
