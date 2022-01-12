@@ -62,14 +62,16 @@ public class GraphSummary extends Fragment {
 
         PieDataSet dataSet = new PieDataSet(yvalues, "Expenses");
         PieData data = new PieData(dataSet);
+        data.setValueFormatter(new PercentFormatter(pieChart));
 
-//        data.setValueFormatter(new PercentFormatter());
+        pieChart.setUsePercentValues(true);
+
         pieChart.setData(data);
-        pieChart.setUsePercentValues(false);
+
         pieChart.getDescription().setEnabled(false);
         pieChart.setDrawHoleEnabled(true);
         pieChart.setTransparentCircleRadius(55f);
-        pieChart.setHoleRadius(58f);
+        pieChart.setHoleRadius(50f);
         dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
         data.setValueTextSize(13f);
         data.setValueTextColor(Color.DKGRAY);
@@ -78,8 +80,9 @@ public class GraphSummary extends Fragment {
         pieChart.setRotationEnabled(true);
         pieChart.setDragDecelerationFrictionCoef(0.9f);
         pieChart.setRotationAngle(0);
-        pieChart.animateY(1400, Easing.EaseInOutQuad);
 
         pieChart.setHighlightPerTapEnabled(true);
+        pieChart.animateY(1400, Easing.EaseInOutQuad);
     }
 }
+
