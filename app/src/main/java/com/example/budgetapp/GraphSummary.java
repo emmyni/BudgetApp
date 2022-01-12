@@ -17,7 +17,6 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
@@ -41,15 +40,26 @@ public class GraphSummary extends Fragment {
             String[] typeExpense = getArguments().getStringArray("typeExpense");
             String[] typeIncome = getArguments().getStringArray("typeIncome");
 
+            float totalExpense = 0.0F;
+
             ArrayList<PieEntry> yvalues = new ArrayList<PieEntry>();
             for (int i = 0; i < valueExpense.length; i++) {
                 Log.d("Curr----------------", valueExpense[i]);
+                totalExpense += Float.parseFloat(valueExpense[i]);
                 yvalues.add(new PieEntry(Float.parseFloat(valueExpense[i]), typeExpense[i], i));
             }
 
+            float totalIncome = 0.0F;
+
             for (int i = 0; i < valueIncome.length; i++) {
+                totalIncome += Float.parseFloat(valueIncome[i]);
                 Log.d("Curr----------------", valueIncome[i]);
             }
+
+            if (totalIncome > totalExpense) {
+                yvalues.add(new PieEntry((totalIncome - totalExpense), "income", typeExpense.length));
+            }
+
             drawChart(view, yvalues);
         }
 
@@ -72,7 +82,7 @@ public class GraphSummary extends Fragment {
         pieChart.setDrawHoleEnabled(true);
         pieChart.setTransparentCircleRadius(55f);
         pieChart.setHoleRadius(50f);
-        dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        dataSet.setColors(Colours.PIE_COLORS);
         data.setValueTextSize(13f);
         data.setValueTextColor(Color.DKGRAY);
         pieChart.setHoleColor(Color.TRANSPARENT);
