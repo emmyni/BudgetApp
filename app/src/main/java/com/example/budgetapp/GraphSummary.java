@@ -1,6 +1,5 @@
 package com.example.budgetapp;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.graphics.Color;
@@ -12,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.IMarker;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -85,11 +84,18 @@ public class GraphSummary extends Fragment {
         dataSet.setColors(Colours.PIE_COLORS);
         data.setValueTextSize(13f);
         data.setValueTextColor(Color.DKGRAY);
+        pieChart.setDrawEntryLabels(false);
+
         pieChart.setHoleColor(Color.TRANSPARENT);
         pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.setRotationEnabled(true);
         pieChart.setDragDecelerationFrictionCoef(0.9f);
         pieChart.setRotationAngle(0);
+
+        pieChart.setTouchEnabled(true);
+
+        IMarker marker = new PieMarkerView(this, R.layout.pie_marker_view);
+        pieChart.setMarker(marker);
 
         pieChart.setHighlightPerTapEnabled(true);
         pieChart.animateY(1400, Easing.EaseInOutQuad);
