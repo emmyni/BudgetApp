@@ -8,11 +8,11 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.MPPointF;
 
-public class PieMarkerView extends MarkerView {
+public class PieMarker extends MarkerView {
 
     private TextView tvContent;
 
-    public PieMarkerView(Context context, int layoutResource) {
+    public PieMarker(Context context, int layoutResource) {
         super(context, layoutResource);
 
         // find your layout components

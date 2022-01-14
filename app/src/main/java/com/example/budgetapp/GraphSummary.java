@@ -2,6 +2,7 @@ package com.example.budgetapp;
 
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.IMarker;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -20,6 +20,7 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import java.util.ArrayList;
 
 public class GraphSummary extends Fragment {
+    Context mContext;
 
     public GraphSummary() {
         // Required empty public constructor
@@ -30,7 +31,7 @@ public class GraphSummary extends Fragment {
                              Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_graph_summary, container, false);
-//        setContentView(R.layout.activity_graph_summary);
+        mContext = getContext();
 
 
         if (getArguments() != null) {
@@ -94,7 +95,7 @@ public class GraphSummary extends Fragment {
 
         pieChart.setTouchEnabled(true);
 
-        IMarker marker = new PieMarkerView(this, R.layout.pie_marker_view);
+        PieMarker marker = new PieMarker(mContext, R.layout.activity_pie_marker);
         pieChart.setMarker(marker);
 
         pieChart.setHighlightPerTapEnabled(true);
