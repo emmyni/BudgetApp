@@ -91,48 +91,44 @@ public class Transportation extends AppCompatActivity {
             }
         });
 
-        mButton.setOnClickListener(
-                new View.OnClickListener()
-                {
-                    public void onClick(View view)
-                    {
-                        gas = 0.0;
-                        maintenance = 0.0;
-                        publicTransport = 0.0;
-                        other = 0.0;
+        mButton.setOnClickListener((View view) ->
+            {
+                gas = 0.0;
+                maintenance = 0.0;
+                publicTransport = 0.0;
+                other = 0.0;
 
-                        String strGas = mEditGas.getText().toString();
-                        String strMaintenance = mEditMaintenance.getText().toString();
-                        String strPublicTransport = mEditPublicTransport.getText().toString();
-                        String strOther = mEditOther.getText().toString();
+                String strGas = mEditGas.getText().toString();
+                String strMaintenance = mEditMaintenance.getText().toString();
+                String strPublicTransport = mEditPublicTransport.getText().toString();
+                String strOther = mEditOther.getText().toString();
 
-                        if (!"".equals(strGas)){
-                            gas = Double.parseDouble(strGas);
-                        }
-                        if (!"".equals(strMaintenance)){
-                            maintenance = Double.parseDouble(strMaintenance);
-                        }
-                        if (!"".equals(strPublicTransport)){
-                            publicTransport = Double.parseDouble(strPublicTransport);
-                        }
-                        if (!"".equals(strOther)){
-                            other = Double.parseDouble(strOther);
-                        }
+                if (!"".equals(strGas)){
+                    gas = Double.parseDouble(strGas);
+                }
+                if (!"".equals(strMaintenance)){
+                    maintenance = Double.parseDouble(strMaintenance);
+                }
+                if (!"".equals(strPublicTransport)){
+                    publicTransport = Double.parseDouble(strPublicTransport);
+                }
+                if (!"".equals(strOther)){
+                    other = Double.parseDouble(strOther);
+                }
 
-                        myRef.child(mDate).child("Transportation").child("gas").setValue(gas);
-                        myRef.child(mDate).child("Transportation").child("maintenance").setValue(maintenance);
-                        myRef.child(mDate).child("Transportation").child("publicTransport").setValue(publicTransport);
-                        myRef.child(mDate).child("Transportation").child("other").setValue(other);
+                myRef.child(mDate).child("Transportation").child("gas").setValue(gas);
+                myRef.child(mDate).child("Transportation").child("maintenance").setValue(maintenance);
+                myRef.child(mDate).child("Transportation").child("publicTransport").setValue(publicTransport);
+                myRef.child(mDate).child("Transportation").child("other").setValue(other);
 
-                        Log.v("EditText gas", "gas " + getGas());
-                        Log.v("EditText maintenance", "maintenance " + getMaintenance());
-                        Log.v("EditText pTransport", "publicTransport " + getPublicTransport());
-                        Log.v("EditText other", "other " + getOther());
+                Log.v("EditText gas", "gas " + getGas());
+                Log.v("EditText maintenance", "maintenance " + getMaintenance());
+                Log.v("EditText pTransport", "publicTransport " + getPublicTransport());
+                Log.v("EditText other", "other " + getOther());
 
-                        Intent activity2Intent = new Intent(mContext, Overview.class);
-                        activity2Intent.putExtra("date", mDate);
-                        mContext.startActivity(activity2Intent);
-                    }
-                });
+                Intent activity2Intent = new Intent(mContext, Overview.class);
+                activity2Intent.putExtra("date", mDate);
+                mContext.startActivity(activity2Intent);
+        });
     }
 }

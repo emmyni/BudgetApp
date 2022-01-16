@@ -5,7 +5,7 @@
     android:background="@color/colorBlue" >
 
     <TextView
-        android:id="@+id/tvContent"
+        android:id="@+id/pieContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

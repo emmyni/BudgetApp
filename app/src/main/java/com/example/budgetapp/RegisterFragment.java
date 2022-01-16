@@ -58,11 +58,8 @@ public class RegisterFragment extends Fragment {
         mContext = getContext();
 
         mButton = (Button)view.findViewById(R.id.btn_register);
-        mButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        mButton.setOnClickListener((View v) -> {
                 PerformAuth();
-            }
-
         });
         return view;
     }

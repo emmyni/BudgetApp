@@ -20,14 +20,11 @@ public class MainActivity extends AppCompatActivity {
         mContext = this;
 
         mButton = (Button)findViewById(R.id.button);
-        mButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                System.out.println("Button Clicked");
+        mButton.setOnClickListener((View v) -> {
+            System.out.println("Button Clicked");
 
-                Intent activity2Intent = new Intent(mContext, Start.class);
-                mContext.startActivity(activity2Intent);
-            }
-
+            Intent activity2Intent = new Intent(mContext, Start.class);
+            mContext.startActivity(activity2Intent);
         });
     }
 }

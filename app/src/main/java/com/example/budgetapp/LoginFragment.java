@@ -54,20 +54,13 @@ public class LoginFragment extends Fragment {
         mContext = getContext();
 
         mButton = (Button)view.findViewById(R.id.btn_login);
-        mButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                PeformLogin();
-//                System.out.println("Button Clicked");
-//
-//                Intent activity2Intent = new Intent(mContext, CalendarPage.class);
-//                mContext.startActivity(activity2Intent);
-            }
-
+        mButton.setOnClickListener((View v) -> {
+            PerformLogin();
         });
         return view;
     }
 
-    private void PeformLogin() {
+    private void PerformLogin() {
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
 

@@ -84,42 +84,37 @@ public class Income extends AppCompatActivity {
             }
         });
 
-        mButton.setOnClickListener(
-                new View.OnClickListener()
-                {
-                    public void onClick(View view)
-                    {
-                        salary = 0.0;
-                        investment = 0.0;
-                        other = 0.0;
+        mButton.setOnClickListener((View view) ->
+            {
+                salary = 0.0;
+                investment = 0.0;
+                other = 0.0;
 
-                        String strSalary = mEditSalary.getText().toString();
-                        String strInvestment = mEditInvestment.getText().toString();
-                        String strOther = mEditOther.getText().toString();
+                String strSalary = mEditSalary.getText().toString();
+                String strInvestment = mEditInvestment.getText().toString();
+                String strOther = mEditOther.getText().toString();
 
-                        if (!"".equals(strSalary)){
-                            salary = Double.parseDouble(strSalary);
-                        }
-                        if (!"".equals(strInvestment)){
-                            investment = Double.parseDouble(strInvestment);
-                        }
-                        if (!"".equals(strOther)){
-                            other = Double.parseDouble(strOther);
-                        }
+                if (!"".equals(strSalary)){
+                    salary = Double.parseDouble(strSalary);
+                }
+                if (!"".equals(strInvestment)){
+                    investment = Double.parseDouble(strInvestment);
+                }
+                if (!"".equals(strOther)){
+                    other = Double.parseDouble(strOther);
+                }
 
-                        myRef.child(mDate).child("Income").child("salary").setValue(salary);
-                        myRef.child(mDate).child("Income").child("investment").setValue(investment);
-                        myRef.child(mDate).child("Income").child("other").setValue(other);
+                myRef.child(mDate).child("Income").child("salary").setValue(salary);
+                myRef.child(mDate).child("Income").child("investment").setValue(investment);
+                myRef.child(mDate).child("Income").child("other").setValue(other);
 
-                        Log.v("EditText ", "salary " + getSalary());
-                        Log.v("EditText ", "investment " + getInvestment());
-                        Log.v("EditText other", "other " + getOther());
+                Log.v("EditText ", "salary " + getSalary());
+                Log.v("EditText ", "investment " + getInvestment());
+                Log.v("EditText other", "other " + getOther());
 
-                        Intent activity2Intent = new Intent(mContext, Overview.class);
-                        activity2Intent.putExtra("date", mDate);
-                        mContext.startActivity(activity2Intent);
-                    }
-                });
-
+                Intent activity2Intent = new Intent(mContext, Overview.class);
+                activity2Intent.putExtra("date", mDate);
+                mContext.startActivity(activity2Intent);
+        });
     }
 }

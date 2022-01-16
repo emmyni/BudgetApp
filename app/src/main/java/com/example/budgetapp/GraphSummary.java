@@ -42,7 +42,7 @@ public class GraphSummary extends Fragment {
 
             float totalExpense = 0.0F;
 
-            ArrayList<PieEntry> yvalues = new ArrayList<PieEntry>();
+            ArrayList<PieEntry> yvalues = new ArrayList<>();
             for (int i = 0; i < valueExpense.length; i++) {
                 Log.d("Curr----------------", valueExpense[i]);
                 totalExpense += Float.parseFloat(valueExpense[i]);
@@ -51,9 +51,9 @@ public class GraphSummary extends Fragment {
 
             float totalIncome = 0.0F;
 
-            for (int i = 0; i < valueIncome.length; i++) {
-                totalIncome += Float.parseFloat(valueIncome[i]);
-                Log.d("Curr----------------", valueIncome[i]);
+            for (String val : valueIncome) {
+                totalIncome += Float.parseFloat(val);
+                Log.d("Curr----------------", val);
             }
 
             if (totalIncome > totalExpense) {

@@ -10,13 +10,11 @@ import com.github.mikephil.charting.utils.MPPointF;
 
 public class PieMarker extends MarkerView {
 
-    private TextView tvContent;
+    private TextView pieContent;
 
     public PieMarker(Context context, int layoutResource) {
         super(context, layoutResource);
-
-        // find your layout components
-        tvContent = (TextView) findViewById(R.id.tvContent);
+        pieContent = (TextView) findViewById(R.id.pieContent);
     }
 
     // callbacks everytime the MarkerView is redrawn, can be used to update the
@@ -24,7 +22,7 @@ public class PieMarker extends MarkerView {
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
 
-        tvContent.setText("" + e.getY());
+        pieContent.setText("" + e.getY());
 
         // this will perform necessary layouting
         super.refreshContent(e, highlight);

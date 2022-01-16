@@ -76,15 +76,12 @@ public class CalendarPage extends AppCompatActivity {
         mContext = this;
 
         mButton = (Button)findViewById(R.id.button);
-        mButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                System.out.println("Button Clicked");
+        mButton.setOnClickListener((View v) -> {
+            System.out.println("Button Clicked");
 
-                Intent intent = new Intent(mContext, Overview.class);
-                intent.putExtra("date", mCurDate);
-                mContext.startActivity(intent);
-            }
-
+            Intent intent = new Intent(mContext, Overview.class);
+            intent.putExtra("date", mCurDate);
+            mContext.startActivity(intent);
         });
 
         myCalendar = (CalendarView) findViewById(R.id.calendarView);

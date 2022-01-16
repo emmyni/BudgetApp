@@ -19,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Overview extends AppCompatActivity {
     ArrayList<Plan> expenses;
@@ -108,7 +107,7 @@ public class Overview extends AppCompatActivity {
                 RecyclerView rvIncome = (RecyclerView) findViewById(R.id.rvExpenses);
 
                 // Initialize plans
-                expenses = Plan.createPlansList(5, true, valueExpense, mDate);
+                expenses = Plan.createPlansList(5, true, valueExpense);
                 // Create adapter passing in the sample user data
                 PlanAdapter adapter = new PlanAdapter(mContext, expenses, true, mDate);
                 // Attach the adapter to the recyclerview to populate items
@@ -120,7 +119,7 @@ public class Overview extends AppCompatActivity {
                 RecyclerView rvExpenses = (RecyclerView) findViewById(R.id.rvIncome);
 
                 // Initialize plans
-                income = Plan.createPlansList(1, false, valueIncome, mDate);
+                income = Plan.createPlansList(1, false, valueIncome);
                 // Create adapter passing in the sample user data
                 PlanAdapter adapterExpenses = new PlanAdapter(mContext, income, false, mDate);
                 // Attach the adapter to the recyclerview to populate items

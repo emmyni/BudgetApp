@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -85,37 +84,34 @@ public class Food extends AppCompatActivity {
             }
         });
 
-        mButton.setOnClickListener(
-                new View.OnClickListener()
-                {
-                    public void onClick(View view)
-                    {
-                        grocery = 0.0;
-                        restaurant = 0.0;
-                        other = 0.0;
+        mButton.setOnClickListener((View view) ->
+            {
+                grocery = 0.0;
+                restaurant = 0.0;
+                other = 0.0;
 
-                        String strGrocery = mEditGrocery.getText().toString();
-                        String strRestaurant = mEditRestaurant.getText().toString();
-                        String strOther = mEditOther.getText().toString();
+                String strGrocery = mEditGrocery.getText().toString();
+                String strRestaurant = mEditRestaurant.getText().toString();
+                String strOther = mEditOther.getText().toString();
 
-                        if (!"".equals(strGrocery)){
-                            grocery = Double.parseDouble(strGrocery);
-                        }
-                        if (!"".equals(strRestaurant)){
-                            restaurant = Double.parseDouble(strRestaurant);
-                        }
-                        if (!"".equals(strOther)){
-                            other = Double.parseDouble(strOther);
-                        }
+                if (!"".equals(strGrocery)){
+                    grocery = Double.parseDouble(strGrocery);
+                }
+                if (!"".equals(strRestaurant)){
+                    restaurant = Double.parseDouble(strRestaurant);
+                }
+                if (!"".equals(strOther)){
+                    other = Double.parseDouble(strOther);
+                }
 
-                        myRef.child(mDate).child("Grocery").child("grocery").setValue(grocery);
-                        myRef.child(mDate).child("Grocery").child("restaurant").setValue(restaurant);
-                        myRef.child(mDate).child("Grocery").child("other").setValue(other);
+                myRef.child(mDate).child("Grocery").child("grocery").setValue(grocery);
+                myRef.child(mDate).child("Grocery").child("restaurant").setValue(restaurant);
+                myRef.child(mDate).child("Grocery").child("other").setValue(other);
 
-                        Intent activity2Intent = new Intent(mContext, Overview.class);
-                        activity2Intent.putExtra("date", mDate);
-                        mContext.startActivity(activity2Intent);
-                    }
-                });
+                Intent activity2Intent = new Intent(mContext, Overview.class);
+                activity2Intent.putExtra("date", mDate);
+                mContext.startActivity(activity2Intent);
+
+        });
     }
 }

@@ -90,48 +90,44 @@ public class Entertainment extends AppCompatActivity {
             }
         });
 
-        mButton.setOnClickListener(
-                new View.OnClickListener()
+        mButton.setOnClickListener((View view) ->
                 {
-                    public void onClick(View view)
-                    {
-                        subscriptions = 0.0;
-                        shopping = 0.0;
-                        activities = 0.0;
-                        other = 0.0;
+                    subscriptions = 0.0;
+                    shopping = 0.0;
+                    activities = 0.0;
+                    other = 0.0;
 
-                        String strSubscriptions = mEditSubscriptions.getText().toString();
-                        String strShopping = mEditShopping.getText().toString();
-                        String strActivities = mEditActivities.getText().toString();
-                        String strOther = mEditOther.getText().toString();
+                    String strSubscriptions = mEditSubscriptions.getText().toString();
+                    String strShopping = mEditShopping.getText().toString();
+                    String strActivities = mEditActivities.getText().toString();
+                    String strOther = mEditOther.getText().toString();
 
-                        if (!"".equals(strSubscriptions)){
-                            subscriptions = Double.parseDouble(strSubscriptions);
-                        }
-                        if (!"".equals(strShopping)){
-                            shopping = Double.parseDouble(strShopping);
-                        }
-                        if (!"".equals(strActivities)){
-                            activities = Double.parseDouble(strActivities);
-                        }
-                        if (!"".equals(strOther)){
-                            other = Double.parseDouble(strOther);
-                        }
-
-                        myRef.child(mDate).child("Entertainment").child("subscriptions").setValue(subscriptions);
-                        myRef.child(mDate).child("Entertainment").child("shopping").setValue(shopping);
-                        myRef.child(mDate).child("Entertainment").child("activities").setValue(activities);
-                        myRef.child(mDate).child("Entertainment").child("other").setValue(other);
-
-                        Log.v("EditText subscriptions", "subscriptions " + getSubscriptions());
-                        Log.v("EditText shopping", "shopping " + getShopping());
-                        Log.v("EditText activities", "activities " + getActivities());
-                        Log.v("EditText other", "other " + getOther());
-
-                        Intent activity2Intent = new Intent(mContext, Overview.class);
-                        activity2Intent.putExtra("date", mDate);
-                        mContext.startActivity(activity2Intent);
+                    if (!"".equals(strSubscriptions)){
+                        subscriptions = Double.parseDouble(strSubscriptions);
                     }
-                });
+                    if (!"".equals(strShopping)){
+                        shopping = Double.parseDouble(strShopping);
+                    }
+                    if (!"".equals(strActivities)){
+                        activities = Double.parseDouble(strActivities);
+                    }
+                    if (!"".equals(strOther)){
+                        other = Double.parseDouble(strOther);
+                    }
+
+                    myRef.child(mDate).child("Entertainment").child("subscriptions").setValue(subscriptions);
+                    myRef.child(mDate).child("Entertainment").child("shopping").setValue(shopping);
+                    myRef.child(mDate).child("Entertainment").child("activities").setValue(activities);
+                    myRef.child(mDate).child("Entertainment").child("other").setValue(other);
+
+                    Log.v("EditText subscriptions", "subscriptions " + getSubscriptions());
+                    Log.v("EditText shopping", "shopping " + getShopping());
+                    Log.v("EditText activities", "activities " + getActivities());
+                    Log.v("EditText other", "other " + getOther());
+
+                    Intent activity2Intent = new Intent(mContext, Overview.class);
+                    activity2Intent.putExtra("date", mDate);
+                    mContext.startActivity(activity2Intent);
+            });
     }
 }
