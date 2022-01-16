@@ -31,11 +31,11 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="0dp"
             android:layout_marginLeft="16dp"
-            android:text="Calendar"
+            android:text="@string/calendar"
             android:fontFamily="@font/cabal"
             android:textAlignment="center"
             android:textColor="@color/colorDark"
-            android:textSize="45dp"
+            android:textSize="45sp"
             app:layout_constraintStart_toStartOf="parent" />
 
         <CalendarView
@@ -64,9 +64,9 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="Current Plan"
+                    android:text="@string/current_plan"
                     android:textColor="@color/colorBlue"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TableRow
@@ -80,14 +80,15 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginBottom="16dp"
-                        android:text="Income"
+                        android:text="@string/income"
                         app:layout_constraintStart_toStartOf="parent" />
                     <TextView
                         android:id="@+id/textViewDollar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="$" />
+                        android:layout_marginStart="20dp"
+                        android:text="@string/dollars" />
                     <TextView
                         android:id="@+id/textViewIncome"
                         android:layout_width="wrap_content"
@@ -95,7 +96,6 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginBottom="16dp"
-                        android:text="Income Value"
                         app:layout_constraintStart_toStartOf="parent" />
                 </TableRow>
 
@@ -110,14 +110,15 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginBottom="16dp"
-                        android:text="Expenses"
+                        android:text="@string/expenses"
                         app:layout_constraintStart_toStartOf="parent" />
                     <TextView
                         android:id="@+id/textView1Dollar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="$" />
+                        android:layout_marginStart="20dp"
+                        android:text="@string/dollars" />
                     <TextView
                         android:id="@+id/textViewExpenses"
                         android:layout_width="wrap_content"
@@ -125,7 +126,6 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginBottom="16dp"
-                        android:text="Expenses Value"
                         app:layout_constraintStart_toStartOf="parent" />
                 </TableRow>
                 <Button
@@ -138,7 +138,7 @@
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@android:color/white"
-                    android:text="View Details"
+                    android:text="@string/details"
                     android:layout_marginBottom="10dp"/>
             </TableLayout>
         </com.google.android.material.card.MaterialCardView>

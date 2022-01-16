@@ -17,7 +17,7 @@
             android:id="@+id/textViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Other Expenses"
+            android:text="@string/other_expenses"
             android:textSize="35sp"
             android:fontFamily="@font/cabal"
             android:textColor="@color/colorBlue"
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:hint="Vacation"
+            android:hint="@string/vacation"
             app:endIconMode="clear_text"
             app:prefixText="$">
 
@@ -48,7 +48,7 @@
             android:id="@+id/textField2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Emergency"
+            android:hint="@string/emergency"
             app:endIconMode="clear_text"
             android:layout_marginBottom="15dp"
             app:prefixText="$">
@@ -66,7 +66,7 @@
             android:id="@+id/textField3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Savings"
+            android:hint="@string/savings"
             app:endIconMode="clear_text"
             app:prefixText="$">
 

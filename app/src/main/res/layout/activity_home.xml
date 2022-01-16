@@ -17,7 +17,7 @@
             android:id="@+id/textViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Home"
+            android:text="@string/home"
             android:textSize="35sp"
             android:fontFamily="@font/cabal"
             android:textColor="@color/colorBlue"
@@ -30,7 +30,7 @@
             android:id="@+id/textField1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Rent/ Mortgage"
+            android:hint="@string/rent"
             app:endIconMode="clear_text"
             android:layout_marginBottom="15dp"
             app:prefixText="$">
@@ -84,7 +84,7 @@
             android:id="@+id/textField4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Other"
+            android:hint="@string/other"
             app:endIconMode="clear_text"
             app:prefixText="$">
 

@@ -18,7 +18,7 @@
             android:id="@+id/textViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Transportation"
+            android:text="@string/transportation"
             android:textSize="35sp"
             android:fontFamily="@font/cabal"
             android:textColor="@color/colorBlue"
@@ -31,7 +31,7 @@
             android:id="@+id/textField1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Gas"
+            android:hint="@string/gas"
             app:endIconMode="clear_text"
             android:layout_marginBottom="15dp"
             app:prefixText="$">
@@ -49,7 +49,7 @@
             android:id="@+id/textField2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Public Transportation"
+            android:hint="@string/public_transportation"
             app:endIconMode="clear_text"
             android:layout_marginBottom="15dp"
             app:prefixText="$">
@@ -67,7 +67,7 @@
             android:id="@+id/textField3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Car Maintenance"
+            android:hint="@string/car_maintenance"
             app:endIconMode="clear_text"
             android:layout_marginBottom="15dp"
             app:prefixText="$">
@@ -85,7 +85,7 @@
             android:id="@+id/textField4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Other"
+            android:hint="@string/other"
             app:endIconMode="clear_text"
             app:prefixText="$">
 
