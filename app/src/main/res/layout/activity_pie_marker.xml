@@ -11,11 +11,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:ellipsize="end"
-        android:singleLine="true"
+        android:singleLine="false"
         android:text=""
-        android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@android:color/white"
-        android:textSize="12sp" />
+        android:textSize="12sp"/>
 
 </RelativeLayout>

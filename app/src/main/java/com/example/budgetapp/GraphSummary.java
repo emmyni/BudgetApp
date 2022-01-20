@@ -60,13 +60,13 @@ public class GraphSummary extends Fragment {
                 yvalues.add(new PieEntry((totalIncome - totalExpense), "income", typeExpense.length));
             }
 
-            drawChart(view, yvalues);
+            drawChart(view, yvalues, typeExpense);
         }
 
         return view;
     }
 
-    private void drawChart(View view, ArrayList<PieEntry> yvalues) {
+    private void drawChart(View view, ArrayList<PieEntry> yvalues,String[] typeExpense) {
         PieChart pieChart = view.findViewById(R.id.pieChart);
         pieChart.setUsePercentValues(true);
 
@@ -95,7 +95,7 @@ public class GraphSummary extends Fragment {
 
         pieChart.setTouchEnabled(true);
 
-        PieMarker marker = new PieMarker(mContext, R.layout.activity_pie_marker);
+        PieMarker marker = new PieMarker(mContext, R.layout.activity_pie_marker, typeExpense);
         pieChart.setMarker(marker);
 
         pieChart.setHighlightPerTapEnabled(true);
