@@ -1,6 +1,7 @@
 package com.example.budgetapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Overview extends AppCompatActivity {
     ArrayList<Plan> expenses;
@@ -57,6 +57,9 @@ public class Overview extends AppCompatActivity {
         Double[] valueExpense = {0.00, 0.00, 0.00, 0.00, 0.00};
         Double[] valueIncome = {0.00};
 
+        String[] expenseStr = {"0.00", "0.00", "0.00", "0.00", "0.00"};
+        String[] incomeStr = {"0.00"};
+
         String[] typeExpense = {"Grocery", "House", "Transportation", "Entertainment", "Other"};
         String[] typeIncome = {"Income"};
 
@@ -80,10 +83,11 @@ public class Overview extends AppCompatActivity {
 
                         for (int j=0; j < detailsExpenses[i].length; j++) {
                             if(dataSnapshot.child(mDate).child(typeExpense[i]).child(detailsExpenses[i][j]).exists()) {
-                                valueExpense[i] += Double.parseDouble(dataSnapshot.child(mDate).child(typeExpense[i]).child(detailsExpenses[i][j]).getValue().toString());
+                                String exp = dataSnapshot.child(mDate).child(typeExpense[i]).child(detailsExpenses[i][j]).getValue().toString();
+                                valueExpense[i] += Double.parseDouble(exp);
                             }
                         }
-                        Log.d("Success: ", valueExpense[i].toString());
+                        expenseStr[i] = valueExpense[i].toString();
                     }
                 }
 
@@ -91,10 +95,11 @@ public class Overview extends AppCompatActivity {
                     if(dataSnapshot.child(mDate).child(typeIncome[i]).exists()) {
                         for (int j=0; j < detailsIncome[i].length; j++) {
                             if(dataSnapshot.child(mDate).child(typeIncome[i]).child(detailsIncome[i][j]).exists()) {
-                                valueIncome[i] += Double.parseDouble(dataSnapshot.child(mDate).child(typeIncome[i]).child(detailsIncome[i][j]).getValue().toString());
+                                String inc = dataSnapshot.child(mDate).child(typeIncome[i]).child(detailsIncome[i][j]).getValue().toString();
+                                valueIncome[i] += Double.parseDouble(inc);
                             }
                         }
-                        Log.d("Success: ", valueIncome[i].toString());
+                        incomeStr[i] = valueIncome[i].toString();
                     }
                 }
 
@@ -102,7 +107,7 @@ public class Overview extends AppCompatActivity {
                 RecyclerView rvIncome = (RecyclerView) findViewById(R.id.rvExpenses);
 
                 // Initialize plans
-                expenses = Plan.createPlansList(5, true, valueExpense, mDate);
+                expenses = Plan.createPlansList(5, true, valueExpense);
                 // Create adapter passing in the sample user data
                 PlanAdapter adapter = new PlanAdapter(mContext, expenses, true, mDate);
                 // Attach the adapter to the recyclerview to populate items
@@ -114,13 +119,26 @@ public class Overview extends AppCompatActivity {
                 RecyclerView rvExpenses = (RecyclerView) findViewById(R.id.rvIncome);
 
                 // Initialize plans
-                income = Plan.createPlansList(1, false, valueIncome, mDate);
+                income = Plan.createPlansList(1, false, valueIncome);
                 // Create adapter passing in the sample user data
                 PlanAdapter adapterExpenses = new PlanAdapter(mContext, income, false, mDate);
                 // Attach the adapter to the recyclerview to populate items
                 rvExpenses.setAdapter(adapterExpenses);
                 // Set layout manager to position the items
                 rvExpenses.setLayoutManager(new LinearLayoutManager(mContext));
+
+                FragmentManager fm = getSupportFragmentManager();
+
+                Bundle bundle = new Bundle();
+                bundle.putStringArray("valueExpense", expenseStr);
+                bundle.putStringArray("valueIncome", incomeStr);
+                bundle.putStringArray("typeExpense", typeExpense);
+                bundle.putStringArray("typeIncome", typeIncome);
+                GraphSummary fragInfo = new GraphSummary();
+                fragInfo.setArguments(bundle);
+                fm.beginTransaction()
+                        .replace(R.id.fragment_container_view, fragInfo)
+                        .commit();
             }
 
             @Override

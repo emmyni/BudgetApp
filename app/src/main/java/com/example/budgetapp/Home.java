@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -90,43 +89,40 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        mButton.setOnClickListener(
-                new View.OnClickListener()
-                {
-                    public void onClick(View view)
-                    {
-                        rent = 0.0;
-                        power = 0.0;
-                        internet = 0.0;
-                        other = 0.0;
+        mButton.setOnClickListener((View view) ->
+            {
+                rent = 0.0;
+                power = 0.0;
+                internet = 0.0;
+                other = 0.0;
 
-                        String strRent = mEditRent.getText().toString();
-                        String strPower = mEditPower.getText().toString();
-                        String strInternet = mEditInternet.getText().toString();
-                        String strOther = mEditOther.getText().toString();
+                String strRent = mEditRent.getText().toString();
+                String strPower = mEditPower.getText().toString();
+                String strInternet = mEditInternet.getText().toString();
+                String strOther = mEditOther.getText().toString();
 
-                        if (!"".equals(strRent)){
-                            rent = Double.parseDouble(strRent);
-                        }
-                        if (!"".equals(strPower)){
-                            power = Double.parseDouble(strPower);
-                        }
-                        if (!"".equals(strInternet)){
-                            internet = Double.parseDouble(strInternet);
-                        }
-                        if (!"".equals(strOther)){
-                            other = Double.parseDouble(strOther);
-                        }
+                if (!"".equals(strRent)){
+                    rent = Double.parseDouble(strRent);
+                }
+                if (!"".equals(strPower)){
+                    power = Double.parseDouble(strPower);
+                }
+                if (!"".equals(strInternet)){
+                    internet = Double.parseDouble(strInternet);
+                }
+                if (!"".equals(strOther)){
+                    other = Double.parseDouble(strOther);
+                }
 
-                        myRef.child(mDate).child("House").child("rent").setValue(rent);
-                        myRef.child(mDate).child("House").child("hydro").setValue(power);
-                        myRef.child(mDate).child("House").child("internet").setValue(internet);
-                        myRef.child(mDate).child("House").child("other").setValue(other);
+                myRef.child(mDate).child("House").child("rent").setValue(rent);
+                myRef.child(mDate).child("House").child("hydro").setValue(power);
+                myRef.child(mDate).child("House").child("internet").setValue(internet);
+                myRef.child(mDate).child("House").child("other").setValue(other);
 
-                        Intent activity2Intent = new Intent(mContext, Overview.class);
-                        activity2Intent.putExtra("date", mDate);
-                        mContext.startActivity(activity2Intent);
-                    }
-                });
+                Intent activity2Intent = new Intent(mContext, Overview.class);
+                activity2Intent.putExtra("date", mDate);
+                mContext.startActivity(activity2Intent);
+
+        });
     }
 }

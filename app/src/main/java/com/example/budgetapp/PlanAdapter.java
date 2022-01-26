@@ -2,7 +2,6 @@ package com.example.budgetapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,16 +73,13 @@ public class PlanAdapter extends
         button.setText("Edit");
         button.setEnabled(true);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        button.setOnClickListener((View v) -> {
                 System.out.println("Button Clicked");
 
                 Class[] chosenType = mIsExpense ? mClassesExpense : mClassesIncome;
                 Intent activity2Intent = new Intent(mContext, chosenType[index]);
                 activity2Intent.putExtra("date", mDate);
                 mContext.startActivity(activity2Intent);
-            }
-
         });
 
     }

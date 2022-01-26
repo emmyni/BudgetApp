@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -85,34 +84,30 @@ public class OtherExpenses extends AppCompatActivity {
             }
         });
 
-        mButton.setOnClickListener(
-                new View.OnClickListener()
-                {
-                    public void onClick(View view)
-                    {
+        mButton.setOnClickListener((View view) ->
+            {
 
-                        String strVacation = mEditVacation.getText().toString();
-                        String strEmergency = mEditEmergency.getText().toString();
-                        String strSavings = mEditSavings.getText().toString();
+                String strVacation = mEditVacation.getText().toString();
+                String strEmergency = mEditEmergency.getText().toString();
+                String strSavings = mEditSavings.getText().toString();
 
-                        if (!"".equals(strVacation)){
-                            vacation = Double.parseDouble(strVacation);
-                        }
-                        if (!"".equals(strEmergency)){
-                            emergency = Double.parseDouble(strEmergency);
-                        }
-                        if (!"".equals(strSavings)){
-                            savings = Double.parseDouble(strSavings);
-                        }
+                if (!"".equals(strVacation)){
+                    vacation = Double.parseDouble(strVacation);
+                }
+                if (!"".equals(strEmergency)){
+                    emergency = Double.parseDouble(strEmergency);
+                }
+                if (!"".equals(strSavings)){
+                    savings = Double.parseDouble(strSavings);
+                }
 
-                        myRef.child(mDate).child("Other").child("vacation").setValue(vacation);
-                        myRef.child(mDate).child("Other").child("emergency").setValue(emergency);
-                        myRef.child(mDate).child("Other").child("savings").setValue(savings);
+                myRef.child(mDate).child("Other").child("vacation").setValue(vacation);
+                myRef.child(mDate).child("Other").child("emergency").setValue(emergency);
+                myRef.child(mDate).child("Other").child("savings").setValue(savings);
 
-                        Intent activity2Intent = new Intent(mContext, Overview.class);
-                        activity2Intent.putExtra("date", mDate);
-                        mContext.startActivity(activity2Intent);
-                    }
-                });
+                Intent activity2Intent = new Intent(mContext, Overview.class);
+                activity2Intent.putExtra("date", mDate);
+                mContext.startActivity(activity2Intent);
+        });
     }
 }

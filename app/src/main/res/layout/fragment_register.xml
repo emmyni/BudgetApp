@@ -43,7 +43,8 @@
         android:inputType="textPersonName"
         android:fontFamily="@font/roboto_regular"
         android:background="@drawable/et_custom"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:autofillHints="name"/>
 
     <EditText
         android:id="@+id/et_email"
@@ -57,7 +58,8 @@
         android:fontFamily="@font/roboto_regular"
         android:inputType="textEmailAddress"
         android:background="@drawable/et_custom"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:autofillHints="emailAddress"/>
 
     <EditText
         android:id="@+id/et_password"
@@ -71,7 +73,8 @@
         android:fontFamily="@font/roboto_regular"
         android:inputType="textPassword"
         android:background="@drawable/et_custom"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:autofillHints="password"/>
 
     <EditText
         android:id="@+id/et_repassword"
@@ -84,7 +87,8 @@
         android:fontFamily="@font/roboto_regular"
         android:inputType="textPassword"
         android:background="@drawable/et_custom"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:autofillHints="password"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -109,7 +113,8 @@
             android:layout_height="30dp"
             android:src="@drawable/ic_arrow_left"
             android:layout_above="@id/swipeLeft"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/swipe_right_for_login"/>
 
         <TextView
             android:id="@+id/swipeLeft"
