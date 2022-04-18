@@ -134,11 +134,12 @@ public class Overview extends AppCompatActivity {
                 bundle.putStringArray("valueIncome", incomeStr);
                 bundle.putStringArray("typeExpense", typeExpense);
                 bundle.putStringArray("typeIncome", typeIncome);
-                GraphSummary fragInfo = new GraphSummary();
-                fragInfo.setArguments(bundle);
-                fm.beginTransaction()
-                        .replace(R.id.fragment_container_view, fragInfo)
-                        .commit();
+                new BarGraph();
+//                GraphSummary fragInfo = new GraphSummary();
+//                fragInfo.setArguments(bundle);
+//                fm.beginTransaction()
+//                        .replace(R.id.fragment_container_view, fragInfo)
+//                        .commitAllowingStateLoss();
             }
 
             @Override
